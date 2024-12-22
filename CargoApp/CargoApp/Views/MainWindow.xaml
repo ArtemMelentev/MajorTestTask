@@ -1,0 +1,47 @@
+﻿<catel:DataWindow x:Class="CargoApp.Views.MainWindow"
+                  xmlns:catel="http://schemas.catelproject.com"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
+                  d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
+                  mc:Ignorable="d"
+                  Title="Заявки на доставку" Height="450" Width="800">
+</catel:DataWindow>
+<!--<catel:DataWindow x:Class="CargoApp.Views.MainWindow"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:catel="http://schemas.catelproject.com"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:ignore="http://www.ignore.com"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                  xmlns:vm="clr-namespace:CargoApp.ViewModels"
+                  Width="0"
+                  Height="0"
+                  Margin="0"
+                  ResizeMode="NoResize"
+                  ShowActivated="False"
+                  ShowInTaskbar="False"
+                  SizeToContent="Manual"
+                  WindowState="Normal"
+                  WindowStyle="None"
+                  CanCloseUsingEscape="False"
+                  Background="{StaticResource ScanfexControlBackground}"
+                  d:DataContext="{d:DesignInstance vm:MainViewModel}"
+                  mc:Ignorable="d ignore vm">
+    <catel:DataWindow.TaskbarItemInfo>
+        <TaskbarItemInfo/>
+    </catel:DataWindow.TaskbarItemInfo>
+    <i:Interaction.Behaviors>
+        <catel:KeyPressToCommand Command="{Binding DebugTrace}" Key="T" Modifiers="Ctrl+Alt" />
+        <catel:KeyPressToCommand Command="{Binding Licensing}" Key="E" Modifiers="Ctrl+Alt" />
+    </i:Interaction.Behaviors>
+    <Grid >
+        <Grid.Resources>
+        </Grid.Resources>
+        <ContentPresenter Content="{Binding WorkspaceVm}"/>
+    </Grid>
+    
+</catel:DataWindow>-->
