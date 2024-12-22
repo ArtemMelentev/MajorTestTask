@@ -8,6 +8,26 @@
                   d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
                   mc:Ignorable="d"
                   Title="Заявки на доставку" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<TextBox Grid.Row="0" Grid.Column="0" Margin="5" Width="200" HorizontalAlignment="Left"
+                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>-->
+        <Button Grid.Row="0" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Left"
+                Command="{Binding CreateDataBase, UpdateSourceTrigger=PropertyChanged}"
+                Content="TestButton" />
+        <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
+                  SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="*"/>
+                <DataGridTextColumn Header="Описание груза" Binding="{Binding CargoDetails}" Width="*"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
 </catel:DataWindow>
 <!--<catel:DataWindow x:Class="CargoApp.Views.MainWindow"
                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
