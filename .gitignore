@@ -1,0 +1,12 @@
+/UnmanagedAlgos/*/bin
+/UnmanagedAlgos/*/obj
+/*/obj
+/*/bin
+/output
+/packages
+/deploy/*.exe
+/deploy/DongleReport.txt
+/Dev
+.vs
+*.user
+.idea
