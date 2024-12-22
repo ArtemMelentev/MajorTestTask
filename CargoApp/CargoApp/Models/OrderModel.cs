@@ -1,4 +1,6 @@
-﻿namespace CargoApp.Models;
+﻿using CargoApp.Enums;
+
+namespace CargoApp.Models;
 
 
 public class OrderModel
@@ -9,7 +11,7 @@ public class OrderModel
     public string CargoDetails { get; set; }
     public string PickupAddress { get; set; }
     public string DeliveryAddress { get; set; }
-    public string Status { get; set; } = "Новая";
+    public OrderStatus Status { get; set; } = OrderStatus.New;
     public string Comment { get; set; }
     public DateTime CreationDate { get; set; } = DateTime.Now;
 }

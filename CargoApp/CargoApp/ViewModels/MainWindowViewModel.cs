@@ -23,6 +23,7 @@ public class MainWindowViewModel : ViewModelBase
         try
         {
             await using var context = new AppContext();
+            //await context.Database.EnsureDeletedAsync();
             await context.Database.EnsureCreatedAsync(); // Создает базу и таблицу, если их нет
             await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");
         }
