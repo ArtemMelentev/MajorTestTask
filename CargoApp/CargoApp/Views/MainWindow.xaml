@@ -20,7 +20,7 @@
                 Command="{Binding CreateDataBase, UpdateSourceTrigger=PropertyChanged}"
                 Content="Create Database" />
         <Button Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateDataBase, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding CreateOrder, UpdateSourceTrigger=PropertyChanged}"
                 Content="Create order" />
         <DataGrid Grid.Row="2" Margin="5" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
                   SelectionMode="Single">

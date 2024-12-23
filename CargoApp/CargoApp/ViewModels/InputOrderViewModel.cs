@@ -16,4 +16,33 @@ public class InputOrderViewModel : ViewModelBase
     public DateTime CreationDate { get; } = DateTime.Now;
     
     public DialogResult Result { get; private set; }
+    
+    public TaskCommand OKCommand { get; set; }
+    public TaskCommand CancelCommand { get; set; }
+    public TaskCommand SkipCommand { get; set; }
+
+    public InputOrderViewModel()
+    {
+        OKCommand = new TaskCommand(OkCommandAsync);
+        CancelCommand = new TaskCommand(CancelCommandAsync);
+        SkipCommand = new TaskCommand(SkipCommandAsync);
+    }
+    
+    private async Task OkCommandAsync()
+    {
+        Result = DialogResult.Ok;
+        await CloseViewModelAsync(true);
+    }
+    
+    private async Task CancelCommandAsync()
+    {
+        Result = DialogResult.Cancel;
+        await CloseViewModelAsync(false);
+    }
+    
+    private async Task SkipCommandAsync()
+    {
+        Result = DialogResult.Skip;
+        await CloseViewModelAsync(false);
+    }
 }
