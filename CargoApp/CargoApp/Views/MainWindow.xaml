@@ -11,14 +11,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!--<TextBox Grid.Row="0" Grid.Column="0" Margin="5" Width="200" HorizontalAlignment="Left"
                  Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>-->
         <Button Grid.Row="0" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Left"
                 Command="{Binding CreateDataBase, UpdateSourceTrigger=PropertyChanged}"
-                Content="TestButton" />
-        <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
+                Content="Create Database" />
+        <Button Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left"
+                Command="{Binding CreateDataBase, UpdateSourceTrigger=PropertyChanged}"
+                Content="Create order" />
+        <DataGrid Grid.Row="2" Margin="5" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
                   SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
