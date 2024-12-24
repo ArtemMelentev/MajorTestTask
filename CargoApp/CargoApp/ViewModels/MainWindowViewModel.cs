@@ -51,7 +51,6 @@ public class MainWindowViewModel : ViewModelBase
 
             var order = new OrderModel
             {
-                Id = 1,
                 ClientName = inputVM.ClientName,
                 CourierName = inputVM.CourierName,
                 CargoDetails = inputVM.CargoDetails,
@@ -60,13 +59,14 @@ public class MainWindowViewModel : ViewModelBase
                 Comment = inputVM.Comment,
                 Status = OrderStatus.New
             };
-            /*await using var context = new AppContext();
-            await context.Database.EnsureCreatedAsync();
-            await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");*/
+
+            await using var context = new AppContext();
+            context.Orders.Add(order);
+            await context.SaveChangesAsync();
         }
         catch (Exception ex)
         {
-            //await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
+            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
         }
     }
 }
