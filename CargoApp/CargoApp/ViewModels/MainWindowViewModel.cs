@@ -1,4 +1,5 @@
-﻿using CargoApp.Models;
+﻿using CargoApp.Enums;
+using CargoApp.Models;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
@@ -48,12 +49,17 @@ public class MainWindowViewModel : ViewModelBase
                 await _messageService.ShowAsync("Order not created");
             }
 
-            var order = new OrderModel();
-            order.Id = 1;
-            order.Comment = inputVM.Comment;
-            order.ClientName = inputVM.ClientName;
-            order.CourierName = inputVM.CourierName;
-            
+            var order = new OrderModel
+            {
+                Id = 1,
+                ClientName = inputVM.ClientName,
+                CourierName = inputVM.CourierName,
+                CargoDetails = inputVM.CargoDetails,
+                PickupAddress = inputVM.PickupAddress,
+                DeliveryAddress = inputVM.DeliveryAddress,
+                Comment = inputVM.Comment,
+                Status = OrderStatus.New
+            };
             /*await using var context = new AppContext();
             await context.Database.EnsureCreatedAsync();
             await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");*/

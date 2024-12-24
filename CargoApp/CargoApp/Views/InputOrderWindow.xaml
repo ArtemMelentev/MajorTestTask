@@ -12,7 +12,104 @@
                   SizeToContent="WidthAndHeight"
                   mc:Ignorable="d ignore"
                   d:DataContext="{d:DesignInstance viewModels:InputOrderViewModel}">
-        <Grid>
+                  
+        <Grid Margin="20">
+                <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Label and Input for Field 1 -->
+                <TextBlock Text="Client Name:" 
+                           VerticalAlignment="Center" 
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Column="1" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10"
+                         Text="{Binding ClientName}"/>
+                
+                <TextBlock Text="Courier Name" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="1" 
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Row="1" 
+                         Grid.Column="1" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10" 
+                         Text="{Binding CourierName}"/>
+                
+                <TextBlock Text="Cargo Details:" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="2"
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Column="1" Grid.Row="2" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10"
+                         Text="{Binding CargoDetails}"/>
+                
+                <TextBlock Text="Pickup Address" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="3" 
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Row="3" 
+                         Grid.Column="1" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10" 
+                         Text="{Binding PickupAddress}"/>
+                
+                <TextBlock Text="Delivery Address:" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="4"
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Column="1" Grid.Row="4" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10"
+                         Text="{Binding DeliveryAddress}"/>
+                
+                <TextBlock Text="Comment:" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="5" 
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Row="5" 
+                         Grid.Column="1" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10" 
+                         Text="{Binding Comment}"/>
+                
+                
+                <Button Content="OK" 
+                        Grid.Row="6" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        Width="80" 
+                        Margin="0,10,10,0" 
+                        Command="{Binding OKCommand}"/>
+                
+                <Button Content="Cancel" 
+                        Grid.Row="6" 
+                        Grid.Column="1" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        Width="80" 
+                        Margin="10,10,0,0" 
+                        Command="{Binding CancelCommand}"/>
+        </Grid>
+        <!--<Grid>
             <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -39,6 +136,6 @@
                     Margin="5"
                     Padding="10 0"
                     HorizontalAlignment="Center"/> 
-        </Grid>
+        </Grid>-->
 </catel:DataWindow>
 

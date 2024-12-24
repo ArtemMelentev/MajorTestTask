@@ -3,7 +3,7 @@ using Catel.MVVM;
 
 namespace CargoApp.ViewModels;
 
-public class InputOrderViewModel : ViewModelBase
+public sealed class InputOrderViewModel : ViewModelBase
 {
     public string Id { get; set; }
     public string ClientName { get; set; }
@@ -11,7 +11,7 @@ public class InputOrderViewModel : ViewModelBase
     public string CargoDetails { get; set; }
     public string PickupAddress { get; set; }
     public string DeliveryAddress { get; set; }
-    public OrderStatus Status { get; set; } = OrderStatus.New;
+    public OrderStatus Status { get; } = OrderStatus.New;
     public string Comment { get; set; }
     public DateTime CreationDate { get; } = DateTime.Now;
     
@@ -23,6 +23,8 @@ public class InputOrderViewModel : ViewModelBase
 
     public InputOrderViewModel()
     {
+        Title = "Input order info";
+        
         OKCommand = new TaskCommand(OkCommandAsync);
         CancelCommand = new TaskCommand(CancelCommandAsync);
         SkipCommand = new TaskCommand(SkipCommandAsync);
