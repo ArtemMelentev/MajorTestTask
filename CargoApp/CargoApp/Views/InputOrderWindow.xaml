@@ -26,8 +26,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-
-                <!-- Label and Input for Field 1 -->
+            
                 <TextBlock Text="Client Name:" 
                            VerticalAlignment="Center" 
                            Margin="0,10,10,10" />

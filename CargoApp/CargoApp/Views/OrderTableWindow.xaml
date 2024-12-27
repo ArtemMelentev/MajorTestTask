@@ -10,7 +10,19 @@
                    Title="OrderTableWindow" Height="450" Width="800"
                    d:DataContext="{d:DesignInstance viewModels:OrderTableViewModel}">
     <Grid>
-        <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBox x:Name="SearchBox" Width="200" 
+                     Text="{Binding SearchQuery}"/>
+            <Button Content="Искать" 
+                    Command="{Binding SearchOrderCommand}"
+                    Margin="5,0,0,0" />
+        </StackPanel>
+        <DataGrid Grid.Row="1" ItemsSource="{Binding FilteredOrders}" AutoGenerateColumns="True" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
     </Grid>
 </catel:DataWindow>
