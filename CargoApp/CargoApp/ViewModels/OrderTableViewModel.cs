@@ -114,7 +114,7 @@ public class OrderTableViewModel : ViewModelBase
         }
 
         string inputName = "Введите данные курьера";
-        var inputVm = new InputViewModel(inputName, true, true, false, new InputField("inputName"));
+        var inputVm = new InputViewModel(inputName, true, true, new InputField(String.Empty, inputName));
         var result = await _uiVisualizerService.ShowDialogAsync(inputVm);
         bool isInputResultInvalid = String.IsNullOrEmpty(inputVm.Results[0]) || result.DialogResult == false;
         if (isInputResultInvalid)

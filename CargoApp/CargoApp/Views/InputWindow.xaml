@@ -8,7 +8,6 @@
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                   mc:Ignorable="d ignore"
                   d:DataContext="{d:DesignInstance viewModels:InputViewModel}">
-                  
         <Grid Margin="20">
                 <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
