@@ -12,60 +12,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<TextBox Grid.Row="0" Grid.Column="0" Margin="5" Width="200" HorizontalAlignment="Left"
-                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>-->
-        <Button Grid.Row="0" Grid.Column="1" Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateDataBase, UpdateSourceTrigger=PropertyChanged}"
+        <Button Grid.Row="0"  Margin="5" Width="200" HorizontalAlignment="Left"
+                Command="{Binding CreateDataBaseCommand, UpdateSourceTrigger=PropertyChanged}"
                 Content="Create Database" />
         <Button Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateOrder, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding CreateOrderCommand, UpdateSourceTrigger=PropertyChanged}"
                 Content="Create order" />
-        <DataGrid Grid.Row="2" Margin="5" ItemsSource="{Binding Orders}" AutoGenerateColumns="False"
-                  SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
-                <DataGridTextColumn Header="Клиент" Binding="{Binding ClientName}" Width="*"/>
-                <DataGridTextColumn Header="Описание груза" Binding="{Binding CargoDetails}" Width="*"/>
-                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="150"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Button Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Left"
+                Command="{Binding ShowOrderTableCommand, UpdateSourceTrigger=PropertyChanged}"
+                Content="Open Orders Table" />
     </Grid>
 </catel:DataWindow>
-<!--<catel:DataWindow x:Class="CargoApp.Views.MainWindow"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:catel="http://schemas.catelproject.com"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:ignore="http://www.ignore.com"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-                  xmlns:vm="clr-namespace:CargoApp.ViewModels"
-                  Width="0"
-                  Height="0"
-                  Margin="0"
-                  ResizeMode="NoResize"
-                  ShowActivated="False"
-                  ShowInTaskbar="False"
-                  SizeToContent="Manual"
-                  WindowState="Normal"
-                  WindowStyle="None"
-                  CanCloseUsingEscape="False"
-                  Background="{StaticResource ScanfexControlBackground}"
-                  d:DataContext="{d:DesignInstance vm:MainViewModel}"
-                  mc:Ignorable="d ignore vm">
-    <catel:DataWindow.TaskbarItemInfo>
-        <TaskbarItemInfo/>
-    </catel:DataWindow.TaskbarItemInfo>
-    <i:Interaction.Behaviors>
-        <catel:KeyPressToCommand Command="{Binding DebugTrace}" Key="T" Modifiers="Ctrl+Alt" />
-        <catel:KeyPressToCommand Command="{Binding Licensing}" Key="E" Modifiers="Ctrl+Alt" />
-    </i:Interaction.Behaviors>
-    <Grid >
-        <Grid.Resources>
-        </Grid.Resources>
-        <ContentPresenter Content="{Binding WorkspaceVm}"/>
-    </Grid>
-    
-</catel:DataWindow>-->

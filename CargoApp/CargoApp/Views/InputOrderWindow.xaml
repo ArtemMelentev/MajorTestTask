@@ -4,7 +4,6 @@
                   xmlns:catel="http://schemas.catelproject.com"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:ignore="http://www.ignore.com"
-                  xmlns:lex="http://wpflocalizeextension.codeplex.com"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                   ResizeMode="NoResize"

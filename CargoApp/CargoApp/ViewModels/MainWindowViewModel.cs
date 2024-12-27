@@ -12,16 +12,18 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IMessageService _messageService;
     private readonly IUIVisualizerService _uiVisualizerService;
     
-    public TaskCommand CreateDataBase { get; private set; }
-    public TaskCommand CreateOrder { get; private set; }
+    public TaskCommand CreateDataBaseCommand { get; private set; }
+    public TaskCommand CreateOrderCommand { get; private set; }
+    public TaskCommand ShowOrderTableCommand { get; private set; }
 
     public MainWindowViewModel()
     {
         _messageService = DependencyResolver.Resolve<IMessageService>();
         _uiVisualizerService = DependencyResolver.Resolve<UIVisualizerService>();
         
-        CreateDataBase = new TaskCommand(CreateDataBaseAsync);
-        CreateOrder = new TaskCommand(CreateOrderAsync);
+        CreateDataBaseCommand = new TaskCommand(CreateDataBaseAsync);
+        CreateOrderCommand = new TaskCommand(CreateOrderAsync);
+        ShowOrderTableCommand = new TaskCommand(ShowOrderTableAsync);
     }
 
     private async Task CreateDataBaseAsync()
@@ -63,6 +65,24 @@ public class MainWindowViewModel : ViewModelBase
             await using var context = new AppContext();
             context.Orders.Add(order);
             await context.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
+        }
+    }
+
+    private async Task ShowOrderTableAsync()
+    {
+        try
+        {
+            var orderTableViewModel = DependencyResolver.Resolve<OrderTableViewModel>();
+            if (orderTableViewModel is null)
+            {
+                await _messageService.ShowErrorAsync("Something wrong");
+                return;
+            }
+            await _uiVisualizerService.ShowDialogAsync(orderTableViewModel);
         }
         catch (Exception ex)
         {
