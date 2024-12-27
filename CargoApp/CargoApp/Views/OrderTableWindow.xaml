@@ -14,15 +14,35 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBox x:Name="SearchBox" Width="200" 
+        <StackPanel x:Name="SearchBox" Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBox Width="200" 
                      Text="{Binding SearchQuery}"/>
             <Button Content="Искать" 
                     Command="{Binding SearchOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding FilteredOrders}" AutoGenerateColumns="True" 
-                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        
+        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10">
+            <Button Content="Передать на выполнение" 
+                    Command="{Binding SubmitInProcessCommand}"
+                    Margin="5,0,0,0" />
+        </StackPanel>
+        
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="1" Grid.Column="0" 
+                  ItemsSource="{Binding FilteredOrders,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
+                  SelectedIndex="{Binding SelectedOrderIndex,
+                                         Mode=TwoWay,
+                                         UpdateSourceTrigger=PropertyChanged}"
+                  AutoGenerateColumns="True" 
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  IsReadOnly="True"/>
     </Grid>
 </catel:DataWindow>

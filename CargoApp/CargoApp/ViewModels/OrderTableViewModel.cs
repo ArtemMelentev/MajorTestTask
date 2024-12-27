@@ -1,13 +1,20 @@
 ﻿using System.Collections.ObjectModel;
+using CargoApp.Enums;
 using CargoApp.Models;
+using Catel.IoC;
 using Catel.MVVM;
+using Catel.Services;
 using AppContext = CargoApp.DB.AppContext;
 
 namespace CargoApp.ViewModels;
 
 public class OrderTableViewModel : ViewModelBase
 {
-    public TaskCommand SearchOrderCommand { get; set; }
+    private readonly IMessageService _messageService;
+    
+    public Command SearchOrderCommand { get; set; }
+    public TaskCommand SubmitInProcessCommand { get; set; }
+    
     private ObservableCollection<OrderModel> _orders;
     public ObservableCollection<OrderModel> Orders
     {
@@ -30,7 +37,7 @@ public class OrderTableViewModel : ViewModelBase
         }
     }
 
-    private string _searchQuery;
+    private string _searchQuery = String.Empty;
     public string SearchQuery
     {
         get => _searchQuery;
@@ -41,10 +48,24 @@ public class OrderTableViewModel : ViewModelBase
         }
     }
 
-    public OrderTableViewModel() 
+    private int _selectedOrderIndex = -1;
+    public int SelectedOrderIndex
     {
+        get => _selectedOrderIndex;
+        set
+        {
+            _selectedOrderIndex = value;
+            RaisePropertyChanged(nameof(SelectedOrderIndex));
+        }
+    }
+
+    public OrderTableViewModel()
+    {
+        _messageService = DependencyResolver.Resolve<IMessageService>();
+        
         LoadOrders();
-        SearchOrderCommand = new TaskCommand(SearchOrderAsync);
+        SearchOrderCommand = new Command(SearchOrder);
+        SubmitInProcessCommand = new TaskCommand(SubmitInProcessAsync);
     }
 
     private void LoadOrders()
@@ -54,7 +75,7 @@ public class OrderTableViewModel : ViewModelBase
         ApplyFilter(SearchQuery);
     }
 
-    private async Task SearchOrderAsync()
+    private void SearchOrder()
     {
         ApplyFilter(SearchQuery);
     }
@@ -79,5 +100,22 @@ public class OrderTableViewModel : ViewModelBase
                     order.CreationDate.ToString("g").ToLower().Contains(lowerCaseQuery))
             );
         }
+    }
+
+    private async Task SubmitInProcessAsync()
+    {
+        /*var a = SelectedOrderIndex;
+        var b = 1;*/
+        if (SelectedOrderIndex >= FilteredOrders.Count || SelectedOrderIndex < 0)
+        {
+            await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
+            return;
+        }
+
+        var order = FilteredOrders[SelectedOrderIndex];
+        order.CourierName = "Anton";
+        order.Status = OrderStatus.InProcess;
+        RaisePropertyChanged(nameof(FilteredOrders));
+        //FilteredOrders.
     }
 }

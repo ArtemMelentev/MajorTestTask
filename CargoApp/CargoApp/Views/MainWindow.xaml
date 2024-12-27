@@ -16,13 +16,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button Grid.Row="0"  Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateDataBaseCommand, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding CreateDataBaseCommand}"
                 Content="Create Database" />
         <Button Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateOrderCommand, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding CreateOrderCommand}"
                 Content="Create order" />
         <Button Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding ShowOrderTableCommand, UpdateSourceTrigger=PropertyChanged}"
+                Command="{Binding ShowOrderTableCommand}"
                 Content="Open Orders Table" />
     </Grid>
 </catel:DataWindow>
