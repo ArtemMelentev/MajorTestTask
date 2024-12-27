@@ -74,7 +74,7 @@ public class OrderTableViewModel : ViewModelBase
                     (order.CargoDetails?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.PickupAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.DeliveryAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
-                    (order.Status.ToString().Contains(lowerCaseQuery)) ||
+                    (order.Status.ToString().ToLower().Contains(lowerCaseQuery)) ||
                     (order.Comment?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     order.CreationDate.ToString("g").ToLower().Contains(lowerCaseQuery))
             );
