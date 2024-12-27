@@ -1,4 +1,4 @@
-﻿namespace CargoApp.Enums;
+﻿namespace CargoApp.Utilities.Enums;
 
 public enum OrderStatus
 {

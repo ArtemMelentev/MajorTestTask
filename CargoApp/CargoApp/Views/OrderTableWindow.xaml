@@ -35,12 +35,8 @@
         
         <DataGrid x:Name="DataGrid"
                   Grid.Row="1" Grid.Column="0" 
-                  ItemsSource="{Binding FilteredOrders,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}"
-                  SelectedIndex="{Binding SelectedOrderIndex,
-                                         Mode=TwoWay,
-                                         UpdateSourceTrigger=PropertyChanged}"
+                  ItemsSource="{Binding FilteredOrders}"
+                  SelectedIndex="{Binding SelectedOrderIndex}"
                   AutoGenerateColumns="True" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   IsReadOnly="True"/>

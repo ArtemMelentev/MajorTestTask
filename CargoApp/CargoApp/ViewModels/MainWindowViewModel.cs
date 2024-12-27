@@ -1,5 +1,5 @@
-﻿using CargoApp.Enums;
-using CargoApp.Models;
+﻿using CargoApp.Models;
+using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;

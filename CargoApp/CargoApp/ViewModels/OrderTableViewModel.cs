@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using CargoApp.Enums;
 using CargoApp.Models;
+using CargoApp.Utilities;
+using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
@@ -11,6 +12,7 @@ namespace CargoApp.ViewModels;
 public class OrderTableViewModel : ViewModelBase
 {
     private readonly IMessageService _messageService;
+    private readonly IUIVisualizerService _uiVisualizerService;
     
     public Command SearchOrderCommand { get; set; }
     public TaskCommand SubmitInProcessCommand { get; set; }
@@ -62,6 +64,7 @@ public class OrderTableViewModel : ViewModelBase
     public OrderTableViewModel()
     {
         _messageService = DependencyResolver.Resolve<IMessageService>();
+        _uiVisualizerService = DependencyResolver.Resolve<IUIVisualizerService>();
         
         LoadOrders();
         SearchOrderCommand = new Command(SearchOrder);
@@ -104,18 +107,23 @@ public class OrderTableViewModel : ViewModelBase
 
     private async Task SubmitInProcessAsync()
     {
-        /*var a = SelectedOrderIndex;
-        var b = 1;*/
         if (SelectedOrderIndex >= FilteredOrders.Count || SelectedOrderIndex < 0)
         {
             await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
             return;
         }
 
+        string inputName = "Введите данные курьера";
+        var inputVm = new InputViewModel(inputName, true, true, false, new InputField("inputName"));
+        var result = await _uiVisualizerService.ShowDialogAsync(inputVm);
+        bool isInputResultInvalid = String.IsNullOrEmpty(inputVm.Results[0]) || result.DialogResult == false;
+        if (isInputResultInvalid)
+        {
+            await _messageService.ShowAsync("Введено некорректное значение");
+            return;
+        }
         var order = FilteredOrders[SelectedOrderIndex];
-        order.CourierName = "Anton";
+        order.CourierName = inputVm.Results[0]!;
         order.Status = OrderStatus.InProcess;
-        RaisePropertyChanged(nameof(FilteredOrders));
-        //FilteredOrders.
     }
 }

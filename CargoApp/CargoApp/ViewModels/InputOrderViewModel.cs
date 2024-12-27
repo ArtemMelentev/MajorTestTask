@@ -1,4 +1,4 @@
-﻿using CargoApp.Enums;
+﻿using CargoApp.Utilities.Enums;
 using Catel.MVVM;
 
 namespace CargoApp.ViewModels;
@@ -15,8 +15,6 @@ public sealed class InputOrderViewModel : ViewModelBase
     public string Comment { get; set; }
     public DateTime CreationDate { get; } = DateTime.Now;
     
-    public DialogResult Result { get; private set; }
-    
     public TaskCommand OKCommand { get; set; }
     public TaskCommand CancelCommand { get; set; }
     public TaskCommand SkipCommand { get; set; }
@@ -32,19 +30,16 @@ public sealed class InputOrderViewModel : ViewModelBase
     
     private async Task OkCommandAsync()
     {
-        Result = DialogResult.Ok;
         await CloseViewModelAsync(true);
     }
     
     private async Task CancelCommandAsync()
     {
-        Result = DialogResult.Cancel;
         await CloseViewModelAsync(false);
     }
     
     private async Task SkipCommandAsync()
     {
-        Result = DialogResult.Skip;
         await CloseViewModelAsync(false);
     }
 }
