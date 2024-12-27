@@ -92,9 +92,11 @@ public class OrderTableViewModel : ViewModelBase
         else
         {
             var lowerCaseQuery = searchQuery.ToLower();
+            var booltest = FilteredOrders[0].CourierName?.ToLower().Contains(lowerCaseQuery);
             FilteredOrders = new ObservableCollection<OrderModel>(
                 Orders.Where(order =>
                     (order.ClientName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
+                    (order.CourierName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.CargoDetails?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.PickupAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.DeliveryAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||

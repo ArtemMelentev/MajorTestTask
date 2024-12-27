@@ -48,7 +48,7 @@ public class MainWindowViewModel : ViewModelBase
             var result = await _uiVisualizerService.ShowDialogAsync(inputVM);
             if (result.DialogResult != true)
             {
-                await _messageService.ShowAsync("Order not created");
+                await _messageService.ShowAsync("Заявка не была создана");
             }
 
             var order = new OrderModel
@@ -79,7 +79,7 @@ public class MainWindowViewModel : ViewModelBase
             var orderTableViewModel = DependencyResolver.Resolve<OrderTableViewModel>();
             if (orderTableViewModel is null)
             {
-                await _messageService.ShowErrorAsync("Something wrong");
+                await _messageService.ShowErrorAsync("Ошибка создания таблицы заказов");
                 return;
             }
             await _uiVisualizerService.ShowDialogAsync(orderTableViewModel);

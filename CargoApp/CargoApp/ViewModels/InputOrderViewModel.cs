@@ -21,7 +21,7 @@ public sealed class InputOrderViewModel : ViewModelBase
 
     public InputOrderViewModel()
     {
-        Title = "Input order info";
+        Title = "Введите информацию о заявке";
         
         OKCommand = new TaskCommand(OkCommandAsync);
         CancelCommand = new TaskCommand(CancelCommandAsync);
