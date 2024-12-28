@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using CargoApp.Utilities;
 using CargoApp.Utilities.Enums;
 
 namespace CargoApp.ViewModels;
@@ -128,10 +127,26 @@ public class InputOrderViewModel : InputViewModel
             RaisePropertyChanged(nameof(SelectedStatus));
         }
     }
+
+    public bool IsShowClientName => SelectedStatus == OrderStatus.New;
+    public bool IsShowCourierName => SelectedStatus is OrderStatus.New or OrderStatus.InProcess;
+    public bool IsShowCargoDetails =>  SelectedStatus == OrderStatus.New;
+    public bool IsShowPickupAddress => SelectedStatus == OrderStatus.New;
+    public bool IsShowDeliveryAddress => SelectedStatus == OrderStatus.New;
+    public bool IsShowComment => SelectedStatus is OrderStatus.New or OrderStatus.Canceled;
+    public bool IsShowCreationDate => SelectedStatus == OrderStatus.New;
     
-    public InputOrderViewModel(string title, bool canOK = false, bool canCancel = false, params InputField[] fields) :
-        base(title, canOK, canCancel, fields)
+    public InputOrderViewModel(string title, string clientName, string courierName, string cargoDetails, string pickupAddress,
+        string deliveryAddress, string comment, bool canOK = false, bool canCancel = false) :
+        base(title, canOK, canCancel)
     {
+        ClientName = clientName;
+        CourierName = courierName;
+        CargoDetails = cargoDetails;
+        PickupAddress = pickupAddress;
+        DeliveryAddress = deliveryAddress;
+        Comment = comment;
+        
         OrderStatuses = new ObservableCollection<OrderStatus>(
             (OrderStatus[])Enum.GetValues(typeof(OrderStatus))
         );

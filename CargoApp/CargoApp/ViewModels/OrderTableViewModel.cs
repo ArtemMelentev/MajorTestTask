@@ -181,48 +181,24 @@ public class OrderTableViewModel : ViewModelBase
         }
 
         var originOrder = FilteredOrders[SelectedOrderIndex];
-
-        switch (originOrder.Status)
+        string title = "Измените заявку";
+        var inputVM = new InputOrderViewModel(title, originOrder.ClientName, originOrder.CourierName,
+            originOrder.CargoDetails, originOrder.PickupAddress, originOrder.DeliveryAddress, originOrder.Comment,
+            canOK: true, canCancel: true);
+        var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
+        if (res.DialogResult != true)
         {
-            case OrderStatus.New:
-                string title = "Измените заявку";
-                var inputVM = new InputOrderViewModel(title,
-                    canOK: true, canCancel: true,
-                    new InputField("Имя клиента", originOrder.ClientName),
-                    new InputField("Имя курьера", originOrder.CourierName),
-                    new InputField("Детали заказа", originOrder.CargoDetails),
-                    new InputField("Адрес забора", originOrder.PickupAddress),
-                    new InputField("Адрес доставки", originOrder.DeliveryAddress),
-                    new InputField("Комментарий", originOrder.Comment));
-                var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
-                if (res.DialogResult != true)
-                {
-                    await _messageService.ShowAsync("Заявка не была создана");
-                    return;
-                }
-
-                originOrder.ClientName = inputVM.Results[0];
-                originOrder.CourierName = inputVM.Results[1];
-                originOrder.CargoDetails = inputVM.Results[2];
-                originOrder.PickupAddress = inputVM.Results[3];
-                originOrder.DeliveryAddress = inputVM.Results[4];
-                originOrder.Comment = inputVM.Results[5];
-                originOrder.Status = inputVM.SelectedStatus;
-                break;
-            case OrderStatus.InProcess:
-                string title1 = "Измените заявку";
-                var inputVM1 = new InputOrderViewModel(title1, canOK: true, canCancel: true);
-                var res1 = await _uiVisualizerService.ShowDialogAsync(inputVM1);
-                if (res1.DialogResult != true)
-                {
-                    await _messageService.ShowAsync("Заявка не была создана");
-                    return;
-                }
-                originOrder.Status = inputVM1.SelectedStatus;
-                break;
-            
+            await _messageService.ShowAsync("Заявка не была создана");
+            return;
         }
-       
+
+        originOrder.ClientName = inputVM.ClientName;
+        originOrder.CourierName = inputVM.CourierName;
+        originOrder.CargoDetails = inputVM.CargoDetails;
+        originOrder.PickupAddress = inputVM.PickupAddress;
+        originOrder.DeliveryAddress = inputVM.DeliveryAddress;
+        originOrder.Comment = inputVM.Comment;
+        originOrder.Status = inputVM.SelectedStatus;
     }
 
     private bool IsSelectedIndexCorrect()
