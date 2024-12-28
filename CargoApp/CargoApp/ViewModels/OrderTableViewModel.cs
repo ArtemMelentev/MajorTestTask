@@ -197,21 +197,14 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync("Заявка не была создана");
             return;
         }
-         
-        var order = new OrderModel
-        {
-            ClientName = inputVM.Results[0],
-            CourierName = inputVM.Results[1],
-            CargoDetails = inputVM.Results[2],
-            PickupAddress = inputVM.Results[3],
-            DeliveryAddress = inputVM.Results[4],
-            Comment = inputVM.Results[5],
-            Status = inputVM.SelectedStatus,
-            Id = originOrder.I
-        };
-        Orders[Orders.IndexOf(originOrder)] = order;
-        FilteredOrders[SelectedOrderIndex] = order;
-        //тут надо для orders еще сделать
+
+        originOrder.ClientName = inputVM.Results[0];
+        originOrder.CourierName = inputVM.Results[1];
+        originOrder.CargoDetails = inputVM.Results[2];
+        originOrder.PickupAddress = inputVM.Results[3];
+        originOrder.DeliveryAddress = inputVM.Results[4];
+        originOrder.Comment = inputVM.Results[5];
+        originOrder.Status = inputVM.SelectedStatus;
     }
 
     private bool IsSelectedIndexCorrect()
