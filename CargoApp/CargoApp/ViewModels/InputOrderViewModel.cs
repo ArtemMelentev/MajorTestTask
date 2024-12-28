@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using CargoApp.Models;
 using CargoApp.Utilities.Enums;
 
 namespace CargoApp.ViewModels;
@@ -136,8 +137,7 @@ public class InputOrderViewModel : InputViewModel
     public bool IsShowComment => SelectedStatus is OrderStatus.New or OrderStatus.Canceled;
     public bool IsShowCreationDate => SelectedStatus == OrderStatus.New;
 
-    public InputOrderViewModel(string title, string clientName, string courierName, string cargoDetails,
-        string pickupAddress,
+    /*public InputOrderViewModel(string title, string clientName, string courierName, string cargoDetails, string pickupAddress,
         string deliveryAddress, string comment, OrderStatus status, bool canOK = false, bool canCancel = false) :
         base(title, canOK, canCancel)
     {
@@ -151,6 +151,24 @@ public class InputOrderViewModel : InputViewModel
 
         OrderStatuses = new ObservableCollection<OrderStatus>(Enum.GetValues<OrderStatus>());
         if (status is not OrderStatus.New)
+        {
+            OrderStatuses.Remove(OrderStatus.New);
+        }
+    }*/
+
+    public InputOrderViewModel(string title, OrderModel orderModel,bool canOK = false, bool canCancel = false) :
+        base(title, canOK, canCancel)
+    {
+        ClientName = orderModel.ClientName;
+        CourierName = orderModel.CourierName;
+        CargoDetails = orderModel.CargoDetails;
+        PickupAddress = orderModel.PickupAddress;
+        DeliveryAddress = orderModel.DeliveryAddress;
+        Comment = orderModel.Comment;
+        SelectedStatus = orderModel.Status;
+
+        OrderStatuses = new ObservableCollection<OrderStatus>(Enum.GetValues<OrderStatus>());
+        if (orderModel.Status is not OrderStatus.New)
         {
             OrderStatuses.Remove(OrderStatus.New);
         }
