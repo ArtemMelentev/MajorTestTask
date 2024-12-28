@@ -79,8 +79,7 @@ public class OrderTableViewModel : ViewModelBase
 
     private void LoadOrders()
     {
-        using var context = new DBContext();
-        Orders = new ObservableCollection<OrderModel>(context.Orders.ToList());
+        Orders = new ObservableCollection<OrderModel>(_dbContext.Orders.ToList());
         ApplyFilter(SearchQuery);
     }
 

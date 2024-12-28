@@ -5,7 +5,6 @@ using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
-using Microsoft.VisualBasic;
 
 namespace CargoApp.ViewModels;
 
@@ -13,6 +12,7 @@ public class MainWindowViewModel : ViewModelBase
 {
     private readonly IMessageService _messageService;
     private readonly IUIVisualizerService _uiVisualizerService;
+    private readonly DBContext _dbContext;
     
     public TaskCommand CreateDataBaseCommand { get; private set; }
     public TaskCommand CreateOrderCommand { get; private set; }
@@ -22,6 +22,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         _messageService = DependencyResolver.Resolve<IMessageService>();
         _uiVisualizerService = DependencyResolver.Resolve<UIVisualizerService>();
+        _dbContext = ServiceLocator.Default.ResolveType<DBContext>();
         
         CreateDataBaseCommand = new TaskCommand(CreateDataBaseAsync);
         CreateOrderCommand = new TaskCommand(CreateOrderAsync);
@@ -32,8 +33,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            await using var context = new DBContext();
-            await context.Database.EnsureCreatedAsync();
+            await _dbContext.Database.EnsureCreatedAsync();
             await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");
         }
         catch (Exception ex)
@@ -61,13 +61,6 @@ public class MainWindowViewModel : ViewModelBase
                 await _messageService.ShowAsync("Заявка не была создана");
                 return;
             }
-           
-            /*var inputVM = new InputOrderViewModel();
-            var result = await _uiVisualizerService.ShowDialogAsync(inputVM);
-            if (result.DialogResult != true)
-            {
-                await _messageService.ShowAsync("Заявка не была создана");
-            }*/
          
             var order = new OrderModel
             {
@@ -79,10 +72,9 @@ public class MainWindowViewModel : ViewModelBase
                 Comment = inputVM.Results[5],
                 Status = OrderStatus.New
             };
-
-            await using var context = new DBContext();
-            context.Orders.Add(order);
-            await context.SaveChangesAsync();
+            
+            _dbContext.Orders.Add(order);
+            await _dbContext.SaveChangesAsync();
         }
         catch (Exception ex)
         {
