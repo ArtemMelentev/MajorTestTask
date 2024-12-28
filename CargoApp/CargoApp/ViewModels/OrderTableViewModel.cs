@@ -182,9 +182,6 @@ public class OrderTableViewModel : ViewModelBase
 
         var originOrder = FilteredOrders[SelectedOrderIndex];
         string title = "Измените заявку";
-        /*var inputVM = new InputOrderViewModel(title, originOrder.ClientName, originOrder.CourierName,
-            originOrder.CargoDetails, originOrder.PickupAddress, originOrder.DeliveryAddress, originOrder.Comment,
-            originOrder.Status, canOK: true, canCancel: true);*/
         var inputVM = new InputOrderViewModel(title, originOrder, canOK: true, canCancel: true);
         var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
         if (res.DialogResult != true)
