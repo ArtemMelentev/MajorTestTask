@@ -1,9 +1,11 @@
 ﻿using CargoApp.DB;
 using CargoApp.Models;
+using CargoApp.Utilities;
 using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
+using Microsoft.VisualBasic;
 
 namespace CargoApp.ViewModels;
 
@@ -44,21 +46,37 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            var inputVM = new InputOrderViewModel();
+            string title = "Введите информацию о заявке";
+            var inputVM = new InputViewModel(title,
+                canOK: true, canCancel: true,
+                new InputField(String.Empty, "Имя клиента"),
+                new InputField(String.Empty, "Имя курьера"),
+                new InputField(String.Empty, "Детали заказа"),
+                new InputField(String.Empty, "Адрес забора"),
+                new InputField(String.Empty, "Адрес доставки"),
+                new InputField(String.Empty, "Комментарий"));
+            var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
+            if (res.DialogResult != true)
+            {
+                await _messageService.ShowAsync("Заявка не была создана");
+                return;
+            }
+           
+            /*var inputVM = new InputOrderViewModel();
             var result = await _uiVisualizerService.ShowDialogAsync(inputVM);
             if (result.DialogResult != true)
             {
                 await _messageService.ShowAsync("Заявка не была создана");
-            }
-
+            }*/
+         
             var order = new OrderModel
             {
-                ClientName = inputVM.ClientName,
-                CourierName = inputVM.CourierName,
-                CargoDetails = inputVM.CargoDetails,
-                PickupAddress = inputVM.PickupAddress,
-                DeliveryAddress = inputVM.DeliveryAddress,
-                Comment = inputVM.Comment,
+                ClientName = inputVM.Results[0],
+                CourierName = inputVM.Results[1],
+                CargoDetails = inputVM.Results[2],
+                PickupAddress = inputVM.Results[3],
+                DeliveryAddress = inputVM.Results[4],
+                Comment = inputVM.Results[5],
                 Status = OrderStatus.New
             };
 

@@ -7,7 +7,7 @@ namespace CargoApp.ViewModels;
 public class InputViewModel : ViewModelBase
 {
     public InputField[] Fields { get; }
-    public List<string?> Results => Fields.Select(v => v.Value).ToList();
+    public List<string?> Results => Fields.Select(v => v.DefaultValue).ToList();
     public bool CanOK { get; set; }
     public bool CanCancel { get; set; }
 

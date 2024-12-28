@@ -2,12 +2,12 @@
 
 public class InputField
 {
-    public string? Value { get; set; }
+    public string? DefaultValue { get; set; }
     public string? Name { get; set; }
 
-    public InputField(string? value = null, string? name = null)
+    public InputField(string? defaultValue = null, string? name = null)
     {
-        Value = value;
+        DefaultValue = defaultValue;
         Name = name;
     }
 }
