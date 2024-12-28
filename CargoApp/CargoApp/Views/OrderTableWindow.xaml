@@ -60,6 +60,6 @@
                   SelectedIndex="{Binding SelectedOrderIndex}"
                   AutoGenerateColumns="True" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  IsReadOnly="False"/>
+                  IsReadOnly="True"/>
     </Grid>
 </catel:DataWindow>

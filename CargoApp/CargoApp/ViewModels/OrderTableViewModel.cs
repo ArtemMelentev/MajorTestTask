@@ -179,7 +179,39 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
             return;
         }
+
+        var originOrder = FilteredOrders[SelectedOrderIndex];
         
+        string title = "Измените заявку";
+        var inputVM = new InputOrderViewModel(title,
+            canOK: true, canCancel: true,
+            new InputField("Имя клиента", originOrder.ClientName),
+            new InputField("Имя курьера", originOrder.CourierName),
+            new InputField("Детали заказа", originOrder.CargoDetails),
+            new InputField("Адрес забора", originOrder.PickupAddress),
+            new InputField("Адрес доставки", originOrder.DeliveryAddress),
+            new InputField("Комментарий", originOrder.Comment));
+        var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
+        if (res.DialogResult != true)
+        {
+            await _messageService.ShowAsync("Заявка не была создана");
+            return;
+        }
+         
+        var order = new OrderModel
+        {
+            ClientName = inputVM.Results[0],
+            CourierName = inputVM.Results[1],
+            CargoDetails = inputVM.Results[2],
+            PickupAddress = inputVM.Results[3],
+            DeliveryAddress = inputVM.Results[4],
+            Comment = inputVM.Results[5],
+            Status = inputVM.SelectedStatus,
+            Id = originOrder.I
+        };
+        Orders[Orders.IndexOf(originOrder)] = order;
+        FilteredOrders[SelectedOrderIndex] = order;
+        //тут надо для orders еще сделать
     }
 
     private bool IsSelectedIndexCorrect()
