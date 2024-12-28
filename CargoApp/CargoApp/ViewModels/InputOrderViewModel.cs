@@ -4,7 +4,7 @@ using CargoApp.Utilities.Enums;
 
 namespace CargoApp.ViewModels;
 
-public class InputOrderViewModel : InputViewModel
+public class InputOrderViewModel : InputViewModelBase
 {
     private string _clientName = String.Empty;
     private string _courierName = String.Empty;

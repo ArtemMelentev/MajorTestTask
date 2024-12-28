@@ -120,7 +120,12 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
             return;
         }
-
+        var order = FilteredOrders[SelectedOrderIndex];
+        if (order.Status != OrderStatus.New)
+        {
+            return;
+        }
+        
         string inputName = "Введите данные курьера";
         var inputVm = new InputViewModel(inputName, true, true, new InputField(inputName));
         var result = await _uiVisualizerService.ShowDialogAsync(inputVm);
@@ -130,7 +135,7 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync("Введено некорректное значение");
             return;
         }
-        var order = FilteredOrders[SelectedOrderIndex];
+        
         order.CourierName = inputVm.Results[0]!;
         order.Status = OrderStatus.InProcess;
     }
