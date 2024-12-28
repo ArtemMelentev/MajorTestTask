@@ -18,6 +18,7 @@ public class OrderTableViewModel : ViewModelBase
     public Command SearchOrderCommand { get; set; }
     public TaskCommand SubmitInProcessCommand { get; set; }
     public TaskCommand SaveToDatabaseCommand { get; set; }
+    public TaskCommand DeleteOrderCommand { get; set; }
     
     private ObservableCollection<OrderModel> _orders;
     public ObservableCollection<OrderModel> Orders
@@ -73,6 +74,7 @@ public class OrderTableViewModel : ViewModelBase
         SearchOrderCommand = new Command(SearchOrder);
         SubmitInProcessCommand = new TaskCommand(SubmitInProcessAsync);
         SaveToDatabaseCommand = new TaskCommand(SaveToDatabaseAsync);
+        DeleteOrderCommand = new TaskCommand(DeleteOrderAsync);
     }
 
     private void LoadOrders()
@@ -112,7 +114,7 @@ public class OrderTableViewModel : ViewModelBase
 
     private async Task SubmitInProcessAsync()
     {
-        if (SelectedOrderIndex >= FilteredOrders.Count || SelectedOrderIndex < 0)
+        if (!IsSelectedIndexCorrect())
         {
             await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
             return;
@@ -147,6 +149,30 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync($"Ошибка при сохранении изменений: {ex.Message}");
         }
     }
-    
-    
+
+    private async Task DeleteOrderAsync()
+    {
+        if (!IsSelectedIndexCorrect())
+        {
+            await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
+            return;
+        }
+        try
+        {
+            var order = FilteredOrders[SelectedOrderIndex];
+            Orders.Remove(order);
+            FilteredOrders.RemoveAt(SelectedOrderIndex);
+            _dbContext.Orders.Remove(order);
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            await _messageService.ShowAsync($"Ошибка при  удалении: {ex.Message}");
+        }
+    }
+
+    private bool IsSelectedIndexCorrect()
+    {
+        return SelectedOrderIndex < FilteredOrders.Count && SelectedOrderIndex >= 0;
+    }
 }
