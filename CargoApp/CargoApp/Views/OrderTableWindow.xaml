@@ -35,7 +35,7 @@
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10">
-            <Button Content="Сохранить в бд" 
+            <Button Content="Сохранить" 
                     Command="{Binding SaveToDatabaseCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>

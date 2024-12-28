@@ -136,6 +136,10 @@ public class OrderTableViewModel : ViewModelBase
     {
         try
         {
+            foreach (var order in FilteredOrders)
+            {
+                _dbContext.Orders.Update(order);
+            }
             await _dbContext.SaveChangesAsync();
         }
         catch (Exception ex)
@@ -143,4 +147,6 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync($"Ошибка при сохранении изменений: {ex.Message}");
         }
     }
+    
+    
 }
