@@ -1,9 +1,9 @@
-﻿using CargoApp.Models;
+﻿using CargoApp.DB;
+using CargoApp.Models;
 using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
-using AppContext = CargoApp.DB.AppContext;
 
 namespace CargoApp.ViewModels;
 
@@ -30,7 +30,7 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            await using var context = new AppContext();
+            await using var context = new DBContext();
             await context.Database.EnsureCreatedAsync();
             await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");
         }
@@ -62,7 +62,7 @@ public class MainWindowViewModel : ViewModelBase
                 Status = OrderStatus.New
             };
 
-            await using var context = new AppContext();
+            await using var context = new DBContext();
             context.Orders.Add(order);
             await context.SaveChangesAsync();
         }

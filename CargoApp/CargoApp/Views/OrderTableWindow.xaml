@@ -16,6 +16,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
@@ -30,6 +31,12 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10">
             <Button Content="Передать на выполнение" 
                     Command="{Binding SubmitInProcessCommand}"
+                    Margin="5,0,0,0" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10">
+            <Button Content="Сохранить в бд" 
+                    Command="{Binding SaveToDatabaseCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         

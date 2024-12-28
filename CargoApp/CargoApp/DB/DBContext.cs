@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CargoApp.DB;
 
-public class AppContext : DbContext
+public class DBContext : DbContext
 {
     public DbSet<OrderModel> Orders { get; set; }
 

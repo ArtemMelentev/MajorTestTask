@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
+using CargoApp.DB;
 using CargoApp.Models;
 using CargoApp.Utilities;
 using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
-using AppContext = CargoApp.DB.AppContext;
 
 namespace CargoApp.ViewModels;
 
@@ -13,9 +13,11 @@ public class OrderTableViewModel : ViewModelBase
 {
     private readonly IMessageService _messageService;
     private readonly IUIVisualizerService _uiVisualizerService;
+    private readonly DBContext _dbContext;
     
     public Command SearchOrderCommand { get; set; }
     public TaskCommand SubmitInProcessCommand { get; set; }
+    public TaskCommand SaveToDatabaseCommand { get; set; }
     
     private ObservableCollection<OrderModel> _orders;
     public ObservableCollection<OrderModel> Orders
@@ -65,15 +67,17 @@ public class OrderTableViewModel : ViewModelBase
     {
         _messageService = DependencyResolver.Resolve<IMessageService>();
         _uiVisualizerService = DependencyResolver.Resolve<IUIVisualizerService>();
+        _dbContext = ServiceLocator.Default.ResolveType<DBContext>();
         
         LoadOrders();
         SearchOrderCommand = new Command(SearchOrder);
         SubmitInProcessCommand = new TaskCommand(SubmitInProcessAsync);
+        SaveToDatabaseCommand = new TaskCommand(SaveToDatabaseAsync);
     }
 
     private void LoadOrders()
     {
-        using var context = new AppContext();
+        using var context = new DBContext();
         Orders = new ObservableCollection<OrderModel>(context.Orders.ToList());
         ApplyFilter(SearchQuery);
     }
@@ -92,7 +96,6 @@ public class OrderTableViewModel : ViewModelBase
         else
         {
             var lowerCaseQuery = searchQuery.ToLower();
-            var booltest = FilteredOrders[0].CourierName?.ToLower().Contains(lowerCaseQuery);
             FilteredOrders = new ObservableCollection<OrderModel>(
                 Orders.Where(order =>
                     (order.ClientName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
@@ -127,5 +130,17 @@ public class OrderTableViewModel : ViewModelBase
         var order = FilteredOrders[SelectedOrderIndex];
         order.CourierName = inputVm.Results[0]!;
         order.Status = OrderStatus.InProcess;
+    }
+
+    private async Task SaveToDatabaseAsync()
+    {
+        try
+        {
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            await _messageService.ShowAsync($"Ошибка при сохранении изменений: {ex.Message}");
+        }
     }
 }
