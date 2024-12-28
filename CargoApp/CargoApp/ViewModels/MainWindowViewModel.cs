@@ -49,12 +49,12 @@ public class MainWindowViewModel : ViewModelBase
             string title = "Введите информацию о заявке";
             var inputVM = new InputViewModel(title,
                 canOK: true, canCancel: true,
-                new InputField(String.Empty, "Имя клиента"),
-                new InputField(String.Empty, "Имя курьера"),
-                new InputField(String.Empty, "Детали заказа"),
-                new InputField(String.Empty, "Адрес забора"),
-                new InputField(String.Empty, "Адрес доставки"),
-                new InputField(String.Empty, "Комментарий"));
+                new InputField("Имя клиента"),
+                new InputField("Имя курьера"),
+                new InputField("Детали заказа"),
+                new InputField("Адрес забора"),
+                new InputField("Адрес доставки"),
+                new InputField("Комментарий"));
             var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
             if (res.DialogResult != true)
             {
