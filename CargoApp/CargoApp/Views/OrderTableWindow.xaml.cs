@@ -8,11 +8,12 @@ public partial class OrderTableWindow
     public OrderTableWindow(): base(DataWindowMode.Custom)
     {
         InitializeComponent();
-        DataGrid.AddHandler(MouseDownEvent, new MouseButtonEventHandler(dataGrid_MouseDown), true);
+        //DataGrid.AddHandler(MouseDownEvent, new MouseButtonEventHandler(dataGrid_MouseDown), true);
     }
     
+    /*
     private void dataGrid_MouseDown(object sender, MouseButtonEventArgs e)
     {
 
-    }
+    }*/
 }

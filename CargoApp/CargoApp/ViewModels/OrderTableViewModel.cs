@@ -19,6 +19,7 @@ public class OrderTableViewModel : ViewModelBase
     public TaskCommand SubmitInProcessCommand { get; set; }
     public TaskCommand SaveToDatabaseCommand { get; set; }
     public TaskCommand DeleteOrderCommand { get; set; }
+    public TaskCommand EditOrderCommand { get; set; }
     
     private ObservableCollection<OrderModel> _orders;
     public ObservableCollection<OrderModel> Orders
@@ -75,6 +76,7 @@ public class OrderTableViewModel : ViewModelBase
         SubmitInProcessCommand = new TaskCommand(SubmitInProcessAsync);
         SaveToDatabaseCommand = new TaskCommand(SaveToDatabaseAsync);
         DeleteOrderCommand = new TaskCommand(DeleteOrderAsync);
+        EditOrderCommand = new TaskCommand(EditOrderAsync);
     }
 
     private void LoadOrders()
@@ -168,6 +170,16 @@ public class OrderTableViewModel : ViewModelBase
         {
             await _messageService.ShowAsync($"Ошибка при  удалении: {ex.Message}");
         }
+    }
+
+    private async Task EditOrderAsync()
+    {
+        if (!IsSelectedIndexCorrect())
+        {
+            await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
+            return;
+        }
+        
     }
 
     private bool IsSelectedIndexCorrect()

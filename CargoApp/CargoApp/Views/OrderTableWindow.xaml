@@ -18,6 +18,7 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
@@ -41,9 +42,15 @@
                     Margin="5,0,0,0" />
         </StackPanel>
         
-        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" Margin="10">
             <Button Content="Удалить заявку" 
                     Command="{Binding DeleteOrderCommand}"
+                    Margin="5,0,0,0" />
+        </StackPanel>
+         
+        <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal" Margin="10">
+            <Button Content="Редактировать" 
+                    Command="{Binding EditOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
@@ -53,6 +60,6 @@
                   SelectedIndex="{Binding SelectedOrderIndex}"
                   AutoGenerateColumns="True" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  IsReadOnly="True"/>
+                  IsReadOnly="False"/>
     </Grid>
 </catel:DataWindow>
