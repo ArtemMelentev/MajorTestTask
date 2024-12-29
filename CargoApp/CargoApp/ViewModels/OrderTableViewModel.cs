@@ -232,7 +232,7 @@ public class OrderTableViewModel : ViewModelBase
         {
             string title = Strings.InputOrderInfoVMName;
             var originOrder = new OrderModel();
-            var inputVM = new OrderViewModel(title, originOrder, OrderWindowMode.Edit,canOK: true, canCancel: true);
+            var inputVM = new OrderViewModel(title, originOrder, OrderWindowMode.Input, canOK: true, canCancel: true);
             var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
             if (res.DialogResult != true)
             {
