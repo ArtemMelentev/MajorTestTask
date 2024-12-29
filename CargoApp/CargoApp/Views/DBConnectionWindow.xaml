@@ -67,7 +67,7 @@
                      Margin="0,10,0,10"
                      Text="{Binding Password}"/>
             
-            <Button Grid.Row="4" Grid.Column="0" Content="{lex:Loc Connect}" 
+            <Button Grid.Row="4" Grid.Column="0" Content="{lex:Loc ConnectButton}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
                     Width="80" 

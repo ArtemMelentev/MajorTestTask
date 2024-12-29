@@ -105,6 +105,15 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Подключиться к базе данных.
+        /// </summary>
+        internal static string ConnectToDB {
+            get {
+                return ResourceManager.GetString("ConnectToDB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Имя Курьера.
         /// </summary>
         internal static string CourierName {
@@ -146,6 +155,15 @@ namespace CargoApp {
         internal static string OKButton {
             get {
                 return ResourceManager.GetString("OKButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Открыть таблицу заявок.
+        /// </summary>
+        internal static string OpenOrdersTable {
+            get {
+                return ResourceManager.GetString("OpenOrdersTable", resourceCulture);
             }
         }
         

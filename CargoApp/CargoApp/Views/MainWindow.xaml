@@ -5,6 +5,9 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
+                  xmlns:lex="http://wpflocalizeextension.codeplex.com"
+                  lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
+                  lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
                   mc:Ignorable="d"
                   Title="Заявки на доставку" Height="450" Width="800">
@@ -20,10 +23,10 @@
         </Grid.RowDefinitions>
         <Button Grid.Row="0"  Margin="5" Width="200" HorizontalAlignment="Left"
                 Command="{Binding ConnectDataBaseCommand}"
-                Content="Подключиться к базе данных" />
+                Content="{lex:Loc ConnectToDB}" />
         <Button Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Left"
                 Command="{Binding ShowOrderTableCommand}"
-                Content="Открыть таблицу заявок" 
+                Content="{lex:Loc OpenOrdersTable}" 
                 Visibility="{Binding IsConnectedToDB, 
                 Converter={StaticResource BooleanToVisibilityConverter}}"/>
     </Grid>
