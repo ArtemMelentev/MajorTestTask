@@ -5,20 +5,20 @@ using NpgsqlTypes;
 
 namespace CargoApp.ViewModels;
 
-public class EditOrderViewModel : InputViewModelBase
+public class OrderViewModel : InputViewModelBase
 {
-    private double _weight = 0;
-    private double _x = 0;
-    private double _y = 0;
-    private double _z = 0;
+    private double _weight;
+    private double _x;
+    private double _y;
+    private double _z;
     private string _clientName = String.Empty;
     private string _courierName = String.Empty;
-    private string _cargoDetails = String.Empty;
     private string _pickupAddress = String.Empty;
     private string _deliveryAddress = String.Empty;
     private string _comment = String.Empty;
     private DateTime _creationDate = DateTime.Now;
     private OrderStatus _orderStatus = OrderStatus.New;
+    private OrderWindowMode _orderWindowMode;
     
     public ObservableCollection<OrderStatus> OrderStatuses { get; }
 
@@ -132,17 +132,23 @@ public class EditOrderViewModel : InputViewModelBase
         }
     }
 
-    public bool IsShowClientName => SelectedStatus == OrderStatus.New;
-    public bool IsShowCourierName => SelectedStatus is OrderStatus.New or OrderStatus.InProcess;
-    public bool IsShowCargoDetails =>  SelectedStatus == OrderStatus.New;
-    public bool IsShowPickupAddress => SelectedStatus == OrderStatus.New;
-    public bool IsShowDeliveryAddress => SelectedStatus == OrderStatus.New;
-    public bool IsShowComment => SelectedStatus is OrderStatus.New or OrderStatus.Canceled;
-    public bool IsShowCreationDate => SelectedStatus == OrderStatus.New;
+    public bool IsShowClientName => SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;
 
-    public EditOrderViewModel(string title, OrderModel orderModel,bool canOK = false, bool canCancel = false) :
-        base(title, canOK, canCancel)
+    public bool IsShowCourierName => (SelectedStatus is OrderStatus.New or OrderStatus.InProcess) ||
+                                     _orderWindowMode is OrderWindowMode.Input;
+    public bool IsShowCargoDetails =>  SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;
+    public bool IsShowPickupAddress => SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;
+    public bool IsShowDeliveryAddress => SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;
+
+    public bool IsShowComment => SelectedStatus is OrderStatus.New or OrderStatus.Canceled ||
+                                 _orderWindowMode is OrderWindowMode.Input;
+    public bool IsShowCreationDate => SelectedStatus == OrderStatus.New && _orderWindowMode != OrderWindowMode.Input;
+
+    public OrderViewModel(string title, OrderModel orderModel, OrderWindowMode orderWindowMode, bool canOK = false,
+        bool canCancel = false) : base(title, canOK, canCancel)
     {
+        _orderWindowMode = orderWindowMode;
+        
         ClientName = orderModel.ClientName;
         CourierName = orderModel.CourierName;
         PickupAddress = orderModel.PickupAddress;

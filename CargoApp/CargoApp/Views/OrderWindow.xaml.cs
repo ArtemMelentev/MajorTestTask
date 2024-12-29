@@ -3,9 +3,9 @@ using Catel.Windows;
 
 namespace CargoApp.Views;
 
-public partial class EditOrderWindow
+public partial class OrderWindow
 {
-    public EditOrderWindow(): base(DataWindowMode.Custom)
+    public OrderWindow(): base(DataWindowMode.Custom)
     {
         InitializeComponent();
         Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
