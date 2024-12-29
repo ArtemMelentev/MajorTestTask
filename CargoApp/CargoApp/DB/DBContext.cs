@@ -11,9 +11,14 @@ public class DBContext : DbContext
     private readonly string _connectionString;
     public DbSet<OrderModel> Orders { get; set; }
     
-    public DBContext(string connectionString)
+    public DBContext()
     {
         _connectionString = GetConnectionString();
+    }
+    
+    public DBContext(string connectionString)
+    {
+        _connectionString = connectionString;
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -54,7 +59,8 @@ public class DBContext : DbContext
             return String.Empty;
         }
         
-        var config = JsonSerializer.Deserialize<DbConfig>(GlobalConstants.DBJsonFilePath);
+        var json = File.ReadAllText(GlobalConstants.DBJsonFilePath);
+        var config = JsonSerializer.Deserialize<DbConfig>(json);
         if (config is null)
         {
             return String.Empty;
