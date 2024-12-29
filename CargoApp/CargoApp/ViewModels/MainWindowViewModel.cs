@@ -17,9 +17,8 @@ public class MainWindowViewModel : ViewModelBase
     public bool IsConnectedToDB { get; set; } = false;
     
     public TaskCommand ConnectDataBaseCommand { get; private set; }
-    public TaskCommand CreateOrderCommand { get; private set; }
     public TaskCommand ShowOrderTableCommand { get; private set; }
-
+    
     public MainWindowViewModel()
     {
         _messageService = DependencyResolver.Resolve<IMessageService>();
@@ -27,7 +26,6 @@ public class MainWindowViewModel : ViewModelBase
         _dbContext = ServiceLocator.Default.ResolveType<DBContext>();
         
         ConnectDataBaseCommand = new TaskCommand(ConnectDataBaseAsync);
-        CreateOrderCommand = new TaskCommand(CreateOrderAsync);
         ShowOrderTableCommand = new TaskCommand(ShowOrderTableAsync);
     }
 
@@ -38,46 +36,6 @@ public class MainWindowViewModel : ViewModelBase
             var dbConnectionVM = new DBConnectionViewModel();
             var result = await _uiVisualizerService.ShowDialogAsync(dbConnectionVM);
             IsConnectedToDB = result.DialogResult ?? false;
-        }
-        catch (Exception ex)
-        {
-            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
-        }
-    }
-
-    private async Task CreateOrderAsync()
-    {
-        try
-        {
-            string title = "Введите информацию о заявке";
-            var inputVM = new InputViewModel(title,
-                canOK: true, canCancel: true,
-                new InputField("Имя клиента"),
-                new InputField("Имя курьера"),
-                new InputField("Детали заказа"),
-                new InputField("Адрес забора"),
-                new InputField("Адрес доставки"),
-                new InputField("Комментарий"));
-            var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
-            if (res.DialogResult != true)
-            {
-                await _messageService.ShowAsync("Заявка не была создана");
-                return;
-            }
-         
-            var order = new OrderModel
-            {
-                ClientName = inputVM.Results[0],
-                CourierName = inputVM.Results[1],
-                CargoDetails = inputVM.Results[2],
-                PickupAddress = inputVM.Results[3],
-                DeliveryAddress = inputVM.Results[4],
-                Comment = inputVM.Results[5],
-                Status = OrderStatus.New
-            };
-            
-            _dbContext.Orders.Add(order);
-            await _dbContext.SaveChangesAsync();
         }
         catch (Exception ex)
         {

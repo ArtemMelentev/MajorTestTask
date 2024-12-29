@@ -16,10 +16,11 @@ public class OrderTableViewModel : ViewModelBase
     private readonly DBContext _dbContext;
     
     public Command SearchOrderCommand { get; set; }
-    public TaskCommand SubmitInProcessCommand { get; set; }
-    public TaskCommand SaveToDatabaseCommand { get; set; }
-    public TaskCommand DeleteOrderCommand { get; set; }
-    public TaskCommand EditOrderCommand { get; set; }
+    public TaskCommand SubmitInProcessCommand { get; private set; }
+    public TaskCommand SaveToDatabaseCommand { get; private set; }
+    public TaskCommand DeleteOrderCommand { get; private set; }
+    public TaskCommand EditOrderCommand { get; private set; }
+    public TaskCommand CreateOrderCommand { get; private set; }
     
     private ObservableCollection<OrderModel> _orders;
     public ObservableCollection<OrderModel> Orders
@@ -77,6 +78,7 @@ public class OrderTableViewModel : ViewModelBase
         SaveToDatabaseCommand = new TaskCommand(SaveToDatabaseAsync);
         DeleteOrderCommand = new TaskCommand(DeleteOrderAsync);
         EditOrderCommand = new TaskCommand(EditOrderAsync);
+        CreateOrderCommand = new TaskCommand(CreateOrderAsync);
     }
 
     private void LoadOrders()
@@ -203,6 +205,48 @@ public class OrderTableViewModel : ViewModelBase
         originOrder.Comment = inputVM.Comment;
         originOrder.Status = inputVM.SelectedStatus;
         originOrder.CreationDate = inputVM.CreationDate;
+    }
+    
+    private async Task CreateOrderAsync()
+    {
+        try
+        {
+            string title = "Введите информацию о заявке";
+            var inputVM = new InputViewModel(title,
+                canOK: true, canCancel: true,
+                new InputField("Имя клиента"),
+                new InputField("Имя курьера"),
+                new InputField("Детали заказа"),
+                new InputField("Адрес забора"),
+                new InputField("Адрес доставки"),
+                new InputField("Комментарий"));
+            var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
+            if (res.DialogResult != true)
+            {
+                await _messageService.ShowAsync("Заявка не была создана");
+                return;
+            }
+         
+            var order = new OrderModel
+            {
+                ClientName = inputVM.Results[0],
+                CourierName = inputVM.Results[1],
+                CargoDetails = inputVM.Results[2],
+                PickupAddress = inputVM.Results[3],
+                DeliveryAddress = inputVM.Results[4],
+                Comment = inputVM.Results[5],
+                Status = OrderStatus.New
+            };
+
+            FilteredOrders.Add(order);
+            
+            _dbContext.Orders.Add(order);
+            await _dbContext.SaveChangesAsync();
+        }
+        catch (Exception ex)
+        {
+            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
+        }
     }
 
     private bool IsSelectedIndexCorrect()

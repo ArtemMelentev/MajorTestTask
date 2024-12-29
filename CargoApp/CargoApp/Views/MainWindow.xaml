@@ -21,11 +21,6 @@
         <Button Grid.Row="0"  Margin="5" Width="200" HorizontalAlignment="Left"
                 Command="{Binding ConnectDataBaseCommand}"
                 Content="Подключиться к базе данных" />
-        <Button Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateOrderCommand}"
-                Content="Создать заявку" 
-                Visibility="{Binding IsConnectedToDB, 
-                Converter={StaticResource BooleanToVisibilityConverter}}"/>
         <Button Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Left"
                 Command="{Binding ShowOrderTableCommand}"
                 Content="Открыть таблицу заявок" 

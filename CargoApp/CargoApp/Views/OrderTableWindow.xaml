@@ -19,10 +19,11 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         
-        <StackPanel x:Name="SearchBox" Grid.Row="0" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <TextBox Width="200" 
                      Text="{Binding SearchQuery}"/>
             <Button Content="Искать" 
@@ -31,24 +32,30 @@
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10">
+            <Button Content="Создать заявку"
+                    Command="{Binding CreateOrderCommand}"
+                    Margin="5,0,0,0" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10">
             <Button Content="Передать на выполнение" 
                     Command="{Binding SubmitInProcessCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
-        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" Margin="10">
             <Button Content="Сохранить" 
                     Command="{Binding SaveToDatabaseCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
-        <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal" Margin="10">
             <Button Content="Удалить заявку" 
                     Command="{Binding DeleteOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
          
-        <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="5" Orientation="Horizontal" Margin="10">
             <Button Content="Редактировать" 
                     Command="{Binding EditOrderCommand}"
                     Margin="5,0,0,0" />
@@ -60,6 +67,7 @@
                   SelectedIndex="{Binding SelectedOrderIndex}"
                   AutoGenerateColumns="True" 
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  IsReadOnly="True"/>
+                  IsReadOnly="True"
+                  AutoGeneratingColumn="DataGrid_AutoGeneratingColumn"/>
     </Grid>
 </catel:DataWindow>
