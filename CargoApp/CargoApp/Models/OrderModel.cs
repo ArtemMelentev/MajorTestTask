@@ -21,7 +21,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _clientName;
         set
         {
-            if (value == _clientName) return;
+            if (value == _clientName)
+            {
+                return;
+            }
             _clientName = value;
             OnPropertyChanged();
         }
@@ -32,7 +35,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _courierName;
         set
         {
-            if (value == _courierName) return;
+            if (value == _courierName)
+            {
+                return;
+            }
             _courierName = value;
             OnPropertyChanged();
         }
@@ -43,7 +49,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _cargoDetails;
         set
         {
-            if (value == _cargoDetails) return;
+            if (value == _cargoDetails)
+            {
+                return;
+            }
             _cargoDetails = value;
             OnPropertyChanged();
         }
@@ -54,7 +63,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _pickupAddress;
         set
         {
-            if (value == _pickupAddress) return;
+            if (value == _pickupAddress)
+            {
+                return;
+            }
             _pickupAddress = value;
             OnPropertyChanged();
         }
@@ -65,7 +77,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _deliveryAddress;
         set
         {
-            if (value == _deliveryAddress) return;
+            if (value == _deliveryAddress)
+            {
+                return;
+            }
             _deliveryAddress = value;
             OnPropertyChanged();
         }
@@ -76,7 +91,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _status;
         set
         {
-            if (value == _status) return;
+            if (value == _status)
+            {
+                return;
+            }
             _status = value;
             OnPropertyChanged();
         }
@@ -87,7 +105,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _comment;
         set
         {
-            if (value == _comment) return;
+            if (value == _comment)
+            {
+                return;
+            }
             _comment = value;
             OnPropertyChanged();
         }
@@ -98,7 +119,10 @@ public class OrderModel : INotifyPropertyChanged
         get => _creationDate;
         set
         {
-            if (value.Equals(_creationDate)) return;
+            if (value.Equals(_creationDate))
+            {
+                return;
+            }
             _creationDate = value;
             OnPropertyChanged();
         }
