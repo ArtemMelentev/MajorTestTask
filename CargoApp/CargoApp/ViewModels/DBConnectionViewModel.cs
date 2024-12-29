@@ -13,7 +13,6 @@ namespace CargoApp.ViewModels;
 
 public class DBConnectionViewModel : ViewModelBase
 {
-    private const string _dataBaseName = "ordersdb";
     private readonly DBContext _dbContext;
     private readonly IMessageService _messageService;
     
@@ -77,17 +76,16 @@ public class DBConnectionViewModel : ViewModelBase
     {
         try
         {
-            // Проверить подключение
-            var connectionString = BuildConnectionString(false); // Без указания имени базы
+            var connectionString = BuildConnectionString(false);
             await TestConnectionAsync(connectionString);
             
-            // Сохранить конфигурацию
             SaveConfigToFile();
             
-            // Создать базу данных
             await CreateDatabaseAsync();
 
-            await _messageService.ShowAsync("Настройки успешно сохранены!");
+            await _messageService.ShowAsync("Подключение успешно!");
+            
+            
         }
         catch (Exception ex)
         {
@@ -118,11 +116,11 @@ public class DBConnectionViewModel : ViewModelBase
 
     private string BuildConnectionString(bool includeDatabase)
     {
-        if (includeDatabase && string.IsNullOrWhiteSpace(_dataBaseName))
+        if (includeDatabase && string.IsNullOrWhiteSpace(GlobalConstants.DataBaseName))
             throw new Exception("Имя базы данных не указано.");
 
         return $"Host={Host};Port={Port};Username={Username};Password={Password};" +
-               (includeDatabase ? $"Database={_dataBaseName};" : "");
+               (includeDatabase ? $"Database={GlobalConstants.DataBaseName};" : "");
     }
 
     private async Task TestConnectionAsync(string connectionString)
@@ -152,11 +150,11 @@ public class DBConnectionViewModel : ViewModelBase
 
             await _dbContext.Database.EnsureCreatedAsync();
 
-            await _messageService.ShowAsync($"База данных {_dataBaseName} успешно создана.");
+            await _messageService.ShowAsync($"База данных {GlobalConstants.DataBaseName} успешно создана.");
         }
         catch (Exception ex)
         {
-            await _messageService.ShowErrorAsync($"Ошибка при создании базы данных {_dataBaseName}." + ex);
+            await _messageService.ShowErrorAsync($"Ошибка при создании базы данных {GlobalConstants.DataBaseName}." + ex);
         }
     }
 
@@ -168,7 +166,7 @@ public class DBConnectionViewModel : ViewModelBase
             Port,
             Username,
             Password,
-            _dataBaseName
+            GlobalConstants.DataBaseName
         };
 
         var json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
