@@ -132,6 +132,15 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введите данные курьера.
+        /// </summary>
+        internal static string CourierInfoIput {
+            get {
+                return ResourceManager.GetString("CourierInfoIput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Имя Курьера.
         /// </summary>
         internal static string CourierName {
@@ -146,6 +155,15 @@ namespace CargoApp {
         internal static string CreateOrderButton {
             get {
                 return ResourceManager.GetString("CreateOrderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка при создании заявки.
+        /// </summary>
+        internal static string CreateOrderError {
+            get {
+                return ResourceManager.GetString("CreateOrderError", resourceCulture);
             }
         }
         
@@ -175,7 +193,7 @@ namespace CargoApp {
                 return ResourceManager.GetString("DBCreationError", resourceCulture);
             }
         }
-            
+        
         /// <summary>
         ///   Looks up a localized string similar to База данных успешно создана.
         /// </summary>
@@ -191,6 +209,15 @@ namespace CargoApp {
         internal static string DeleteOrderButton {
             get {
                 return ResourceManager.GetString("DeleteOrderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка при удалении заявки.
+        /// </summary>
+        internal static string DeleteOrderError {
+            get {
+                return ResourceManager.GetString("DeleteOrderError", resourceCulture);
             }
         }
         
@@ -213,11 +240,56 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заявка не была изменена.
+        /// </summary>
+        internal static string EditOrderCancelMessage {
+            get {
+                return ResourceManager.GetString("EditOrderCancelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Измените заявку.
+        /// </summary>
+        internal static string EditOrderVMName {
+            get {
+                return ResourceManager.GetString("EditOrderVMName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Хост.
         /// </summary>
         internal static string Host {
             get {
                 return ResourceManager.GetString("Host", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введено некорректное значение.
+        /// </summary>
+        internal static string InputError {
+            get {
+                return ResourceManager.GetString("InputError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заявка не была создана.
+        /// </summary>
+        internal static string InputOrderCancelMessage {
+            get {
+                return ResourceManager.GetString("InputOrderCancelMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Введите информацию о заявке.
+        /// </summary>
+        internal static string InputOrderInfoVMName {
+            get {
+                return ResourceManager.GetString("InputOrderInfoVMName", resourceCulture);
             }
         }
         
@@ -240,11 +312,29 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Заявка не выбрана.
+        /// </summary>
+        internal static string OrderIndexError {
+            get {
+                return ResourceManager.GetString("OrderIndexError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Статус Заявки.
         /// </summary>
         internal static string OrderStatus {
             get {
                 return ResourceManager.GetString("OrderStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка создания таблицы заявок.
+        /// </summary>
+        internal static string OrderTableCreationError {
+            get {
+                return ResourceManager.GetString("OrderTableCreationError", resourceCulture);
             }
         }
         
@@ -272,6 +362,15 @@ namespace CargoApp {
         internal static string Port {
             get {
                 return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка при сохранении изменений.
+        /// </summary>
+        internal static string SaveChangesToDBError {
+            get {
+                return ResourceManager.GetString("SaveChangesToDBError", resourceCulture);
             }
         }
         

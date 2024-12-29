@@ -119,7 +119,7 @@ public class OrderTableViewModel : ViewModelBase
     {
         if (!IsSelectedIndexCorrect())
         {
-            await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
+            await _messageService.ShowAsync(Strings.OrderIndexError);
             return;
         }
         var order = FilteredOrders[SelectedOrderIndex];
@@ -128,13 +128,13 @@ public class OrderTableViewModel : ViewModelBase
             return;
         }
         
-        string inputName = "Введите данные курьера";
+        string inputName = Strings.CourierInfoIput;
         var inputVm = new InputViewModel(inputName, true, true, new InputField(inputName));
         var result = await _uiVisualizerService.ShowDialogAsync(inputVm);
         bool isInputResultInvalid = String.IsNullOrEmpty(inputVm.Results[0]) || result.DialogResult == false;
         if (isInputResultInvalid)
         {
-            await _messageService.ShowAsync("Введено некорректное значение");
+            await _messageService.ShowAsync(Strings.InputError);
             return;
         }
         
@@ -154,7 +154,7 @@ public class OrderTableViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            await _messageService.ShowAsync($"Ошибка при сохранении изменений: {ex.Message}");
+            await _messageService.ShowAsync(Strings.SaveChangesToDBError + ex.Message);
         }
     }
 
@@ -175,7 +175,7 @@ public class OrderTableViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            await _messageService.ShowAsync($"Ошибка при  удалении: {ex.Message}");
+            await _messageService.ShowAsync(Strings.DeleteOrderError + ex.Message);
         }
     }
 
@@ -188,12 +188,12 @@ public class OrderTableViewModel : ViewModelBase
         }
 
         var originOrder = FilteredOrders[SelectedOrderIndex];
-        string title = "Измените заявку";
+        string title = Strings.EditOrderVMName;
         var inputVM = new EditOrderViewModel(title, originOrder, canOK: true, canCancel: true);
         var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
         if (res.DialogResult != true)
         {
-            await _messageService.ShowAsync("Заявка не была изменена");
+            await _messageService.ShowAsync(Strings.EditOrderCancelMessage);
             return;
         }
         
@@ -211,19 +211,19 @@ public class OrderTableViewModel : ViewModelBase
     {
         try
         {
-            string title = "Введите информацию о заявке";
+            string title = Strings.InputOrderInfoVMName;
             var inputVM = new InputViewModel(title,
                 canOK: true, canCancel: true,
-                new InputField("Имя клиента"),
-                new InputField("Имя курьера"),
-                new InputField("Детали заказа"),
-                new InputField("Адрес забора"),
-                new InputField("Адрес доставки"),
-                new InputField("Комментарий"));
+                new InputField(Strings.ClientName),
+                new InputField(Strings.CourierName),
+                new InputField(Strings.CargoDetails),
+                new InputField(Strings.PickupAddress),
+                new InputField(Strings.DeliveryAddress),
+                new InputField(Strings.Comment));
             var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
             if (res.DialogResult != true)
             {
-                await _messageService.ShowAsync("Заявка не была создана");
+                await _messageService.ShowAsync(Strings.InputOrderCancelMessage);
                 return;
             }
          
@@ -245,7 +245,7 @@ public class OrderTableViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
+            await _messageService.ShowAsync(Strings.CreateOrderError + ex.Message);
         }
     }
 

@@ -1,7 +1,4 @@
 ﻿using CargoApp.DB;
-using CargoApp.Models;
-using CargoApp.Utilities;
-using CargoApp.Utilities.Enums;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
@@ -14,7 +11,7 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IUIVisualizerService _uiVisualizerService;
     private readonly DBContext _dbContext;
 
-    public bool IsConnectedToDB { get; set; } = false;
+    public bool IsConnectedToDB { get; set; }
     
     public TaskCommand ConnectDataBaseCommand { get; private set; }
     public TaskCommand ShowOrderTableCommand { get; private set; }
@@ -39,25 +36,18 @@ public class MainWindowViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
+            await _messageService.ShowAsync(Strings.OrderTableCreationError + ex.Message);
         }
     }
 
     private async Task ShowOrderTableAsync()
     {
-        try
+        var orderTableViewModel = DependencyResolver.Resolve<OrderTableViewModel>();
+        if (orderTableViewModel is null)
         {
-            var orderTableViewModel = DependencyResolver.Resolve<OrderTableViewModel>();
-            if (orderTableViewModel is null)
-            {
-                await _messageService.ShowErrorAsync("Ошибка создания таблицы заказов");
-                return;
-            }
-            await _uiVisualizerService.ShowDialogAsync(orderTableViewModel);
+            await _messageService.ShowErrorAsync(Strings.OrderTableCreationError);
+            return;
         }
-        catch (Exception ex)
-        {
-            await _messageService.ShowAsync($"Ошибка при создании таблицы: {ex.Message}");
-        }
+        await _uiVisualizerService.ShowDialogAsync(orderTableViewModel);
     }
 }

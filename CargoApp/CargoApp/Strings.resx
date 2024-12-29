@@ -102,4 +102,37 @@
     <data name="DBCreationError" xml:space="preserve">
         <value>Ошибка при создании базы данных</value>
     </data>
+    <data name="OrderTableCreationError" xml:space="preserve">
+        <value>Ошибка создания таблицы заявок</value>
+    </data>
+    <data name="OrderIndexError" xml:space="preserve">
+        <value>Заявка не выбрана</value>
+    </data>
+    <data name="CourierInfoIput" xml:space="preserve">
+        <value>Введите данные курьера</value>
+    </data>
+    <data name="InputError" xml:space="preserve">
+        <value>Введено некорректное значение</value>
+    </data>
+    <data name="SaveChangesToDBError" xml:space="preserve">
+        <value>Ошибка при сохранении изменений</value>
+    </data>
+    <data name="DeleteOrderError" xml:space="preserve">
+        <value>Ошибка при удалении заявки</value>
+    </data>
+    <data name="EditOrderVMName" xml:space="preserve">
+        <value>Измените заявку</value>
+    </data>
+    <data name="EditOrderCancelMessage" xml:space="preserve">
+        <value>Заявка не была изменена</value>
+    </data>
+    <data name="InputOrderInfoVMName" xml:space="preserve">
+        <value>Введите информацию о заявке</value>
+    </data>
+    <data name="InputOrderCancelMessage" xml:space="preserve">
+        <value>Заявка не была создана</value>
+    </data>
+    <data name="CreateOrderError" xml:space="preserve">
+        <value>Ошибка при создании заявки</value>
+    </data>
 </root>
