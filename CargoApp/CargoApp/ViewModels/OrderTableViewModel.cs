@@ -191,7 +191,7 @@ public class OrderTableViewModel : ViewModelBase
         var res = await _uiVisualizerService.ShowDialogAsync(inputVM);
         if (res.DialogResult != true)
         {
-            await _messageService.ShowAsync("Заявка не была создана");
+            await _messageService.ShowAsync("Заявка не была изменена");
             return;
         }
         
@@ -202,6 +202,7 @@ public class OrderTableViewModel : ViewModelBase
         originOrder.DeliveryAddress = inputVM.DeliveryAddress;
         originOrder.Comment = inputVM.Comment;
         originOrder.Status = inputVM.SelectedStatus;
+        originOrder.CreationDate = inputVM.CreationDate;
     }
 
     private bool IsSelectedIndexCorrect()

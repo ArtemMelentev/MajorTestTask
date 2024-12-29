@@ -103,7 +103,7 @@ public class InputOrderViewModel : InputViewModelBase
 
     public DateTime CreationDate
     {
-        get => _creationDate;
+        get => _creationDate.ToUniversalTime();
         set
         {
             if (value.Equals(_creationDate))
@@ -147,6 +147,7 @@ public class InputOrderViewModel : InputViewModelBase
         DeliveryAddress = orderModel.DeliveryAddress;
         Comment = orderModel.Comment;
         SelectedStatus = orderModel.Status;
+        CreationDate = orderModel.CreationDate;
 
         OrderStatuses = new ObservableCollection<OrderStatus>(Enum.GetValues<OrderStatus>());
         if (orderModel.Status is not OrderStatus.New)

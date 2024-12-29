@@ -20,6 +20,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -101,7 +102,28 @@
                          Visibility="{Binding IsShowComment, 
                          Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
-                <StackPanel Grid.Row="6" Grid.Column="0" Margin="10">
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Выберите дату:" Margin="0,10,10,10" />
+            
+            
+                <DatePicker Grid.Row="6" 
+                            Grid.Column="1" 
+                            SelectedDate="{Binding CreationDate}" 
+                            Visibility="{Binding IsShowCreationDate, 
+                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                
+                <!--<StackPanel Grid.Row="6" Grid.Column="0" Margin="20">
+                    ~1~ Текстовый блок @1@
+                    <TextBlock Text="Выберите дату:" FontSize="16" Margin="0,0,0,10" />
+            
+                    ~1~ Элемент DatePicker @1@
+                    <DatePicker SelectedDate="{Binding CreationDate}" />
+
+                    ~1~ Отображение выбранной даты @1@
+                    <TextBlock Text="{Binding Date, StringFormat='Выбранная дата: {0:dd.MM.yyyy}'}" 
+                               FontSize="16" Margin="0,10,0,0" />
+                </StackPanel>-->
+                
+                <StackPanel Grid.Row="7" Grid.Column="0" Margin="10">
                         <TextBlock Text="Select Order Status:" Margin="0,0,0,10" />
                         <ComboBox ItemsSource="{Binding OrderStatuses}" 
                                   SelectedItem="{Binding SelectedStatus}" 
@@ -109,7 +131,7 @@
                 </StackPanel>
                 
                 <Button Content="OK" 
-                        Grid.Row="7" 
+                        Grid.Row="8" 
                         Grid.Column="0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
@@ -120,7 +142,7 @@
                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <Button Content="Cancel" 
-                        Grid.Row="7" 
+                        Grid.Row="8" 
                         Grid.Column="1" 
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Center" 
