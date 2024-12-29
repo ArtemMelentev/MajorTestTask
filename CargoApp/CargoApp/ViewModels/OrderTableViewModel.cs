@@ -212,6 +212,11 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync(Strings.OrderIncorrect);
             return;
         }
+
+        originOrder.Weight = inputVM.Weight;
+        originOrder.X = inputVM.X;
+        originOrder.Y = inputVM.Y;
+        originOrder.Z = inputVM.Z;
         originOrder.ClientName = inputVM.ClientName;
         originOrder.CourierName = inputVM.CourierName;
         originOrder.PickupAddress = inputVM.PickupAddress;
