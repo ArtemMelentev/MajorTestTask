@@ -63,11 +63,6 @@
                      VerticalAlignment="Center" 
                      Margin="0,10,0,10"
                      Text="{Binding Password}"/>
-            <!--<PasswordBox Grid.Row="3" Grid.Column="1"
-                         Width="200" 
-                         VerticalAlignment="Center" 
-                         Password="{Binding Password}" 
-                         Margin="0,10,0,10"/>-->
             
             <Button Grid.Row="4" Grid.Column="0" Content="Connect" 
                     HorizontalAlignment="Center" 

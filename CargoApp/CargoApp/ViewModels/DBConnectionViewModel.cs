@@ -18,8 +18,6 @@ public class DBConnectionViewModel : ViewModelBase
     private string _password = String.Empty;
     
     public TaskCommand ConnectToDBCommand { get; set; }
-    
-    public bool IsConnected { get; private set; } = false;
 
     public string Host
     {
@@ -84,30 +82,23 @@ public class DBConnectionViewModel : ViewModelBase
 
     private async Task ConnectToDBAsync()
     {
-        try
+        var connectionString = BuildConnectionString(false);
+        bool result = await TestConnectionAsync(connectionString);
+        if (!result)
         {
-            var connectionString = BuildConnectionString(false);
-            bool result = await TestConnectionAsync(connectionString);
-            if (!result)
-            {
-                await _messageService.ShowErrorAsync($"Проверьте правильность введенных данных");
-                return;
-            }
-
-            if (!File.Exists(GlobalConstants.DBJsonFilePath))
-            {
-                SaveConfigToFile();
-            }
-            
-            await CreateDatabaseAsync();
-
-            await _messageService.ShowAsync("Подключение успешно!");
-            await CloseViewModelAsync(true);
+            await _messageService.ShowErrorAsync($"Проверьте правильность введенных данных");
+            return;
         }
-        catch (Exception ex)
+
+        if (!File.Exists(GlobalConstants.DBJsonFilePath))
         {
-            await _messageService.ShowErrorAsync($"Ошибка: {ex.Message}");
+            SaveConfigToFile();
         }
+        
+        await CreateDatabaseAsync();
+
+        await _messageService.ShowAsync("Подключение успешно!");
+        await CloseViewModelAsync(true);
     }
 
     private string BuildConnectionString(bool includeDatabase)

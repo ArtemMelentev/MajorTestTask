@@ -13,6 +13,8 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IMessageService _messageService;
     private readonly IUIVisualizerService _uiVisualizerService;
     private readonly DBContext _dbContext;
+
+    public bool IsConnectedToDB { get; set; } = false;
     
     public TaskCommand ConnectDataBaseCommand { get; private set; }
     public TaskCommand CreateOrderCommand { get; private set; }
@@ -33,12 +35,9 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            /*await _dbContext.Database.EnsureCreatedAsync();
-            await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");
-            await _dbContext.Database.CanConnectAsync();*/
             var dbConnectionVM = new DBConnectionViewModel();
-            await _uiVisualizerService.ShowDialogAsync(dbConnectionVM);
-
+            var result = await _uiVisualizerService.ShowDialogAsync(dbConnectionVM);
+            IsConnectedToDB = result.DialogResult ?? false;
         }
         catch (Exception ex)
         {
