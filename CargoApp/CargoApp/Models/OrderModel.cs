@@ -4,7 +4,6 @@ using CargoApp.Utilities.Enums;
 
 namespace CargoApp.Models;
 
-
 public class OrderModel : INotifyPropertyChanged
 {
     private string _clientName = String.Empty;
@@ -140,7 +139,8 @@ public class OrderModel : INotifyPropertyChanged
 
     public override string ToString()
     {
-        return "Order : " + ClientName + " " + CourierName + " " + PickupAddress + " " +
-               Weight + " " + X + " " + Y + " " + Z + " " + DeliveryAddress + " " + CreationDate + " " + Comment;
+        return "Order : " + "ClientName: " + ClientName + " CourierName: " + CourierName + " PickupAddress: " +
+               PickupAddress + " Weight: " + Weight + " X: " + X + " Y: " + Y + " Z: " + Z + " DeliveryAddress: " +
+               DeliveryAddress + " CreationDate: " + CreationDate + " Comment: " + Comment;
     }
 }
