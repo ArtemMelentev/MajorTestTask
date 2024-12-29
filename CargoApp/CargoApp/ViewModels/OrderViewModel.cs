@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using CargoApp.Models;
 using CargoApp.Utilities.Enums;
-using NpgsqlTypes;
 
 namespace CargoApp.ViewModels;
 
@@ -134,7 +133,7 @@ public class OrderViewModel : InputViewModelBase
 
     public bool IsShowClientName => SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;
 
-    public bool IsShowCourierName => (SelectedStatus is OrderStatus.New or OrderStatus.InProcess) ||
+    public bool IsShowCourierName => SelectedStatus is OrderStatus.New or OrderStatus.InProcess ||
                                      _orderWindowMode is OrderWindowMode.Input;
     public bool IsShowCargoDetails =>  SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;
     public bool IsShowPickupAddress => SelectedStatus == OrderStatus.New || _orderWindowMode is OrderWindowMode.Input;

@@ -11,9 +11,6 @@
                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d ignore"
                   d:DataContext="{d:DesignInstance viewModels:DBConnectionViewModel}">
-        <catel:DataWindow.Resources>
-                <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        </catel:DataWindow.Resources>
         <Grid Margin="20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

@@ -8,7 +8,6 @@
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                   xmlns:lex="http://wpflocalizeextension.codeplex.com"
                   xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-
                   lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d ignore"
