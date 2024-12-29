@@ -2,7 +2,6 @@
 using System.Text.Json;
 using CargoApp.Models;
 using CargoApp.Utilities;
-using CargoApp.Utilities.ExtensionClasses;
 using Microsoft.EntityFrameworkCore;
 
 namespace CargoApp.DB;

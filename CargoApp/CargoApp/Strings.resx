@@ -154,6 +154,6 @@
         <value>Высота</value>
     </data>
     <data name="SaveChangesToDBSuccessful" xml:space="preserve">
-        <value />
+        <value>Сохранение прошло успешно</value>
     </data>
 </root>

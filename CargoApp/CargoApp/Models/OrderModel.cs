@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using CargoApp.Utilities;
 using CargoApp.Utilities.Enums;
 
 namespace CargoApp.Models;

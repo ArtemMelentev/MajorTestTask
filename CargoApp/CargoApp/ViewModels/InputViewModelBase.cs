@@ -6,6 +6,9 @@ public class InputViewModelBase : ViewModelBase
 {
     public bool CanOK { get; set; }
     public bool CanCancel { get; set; }
+    
+    public TaskCommand OKCommand { get; private set; }
+    public TaskCommand CancelCommand { get; private set; }
 
     public InputViewModelBase(string title, 
         bool canOK = false,
@@ -20,8 +23,6 @@ public class InputViewModelBase : ViewModelBase
         CancelCommand = new TaskCommand(CancelCommandAsync);
     }
     
-    public TaskCommand OKCommand { get; set; }
-    public TaskCommand CancelCommand { get; set; }
     private async Task OkCommandAsync()
     {
         await CloseViewModelAsync(true);

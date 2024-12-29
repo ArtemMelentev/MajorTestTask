@@ -105,12 +105,12 @@ public class OrderTableViewModel : ViewModelBase
             var lowerCaseQuery = searchQuery.ToLower();
             FilteredOrders = new ObservableCollection<OrderModel>(
                 Orders.Where(order =>
-                    (order.ClientName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
-                    (order.CourierName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
-                    (order.PickupAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
-                    (order.DeliveryAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
-                    (order.Status.ToString().ToLower().Contains(lowerCaseQuery)) ||
-                    (order.Comment?.ToLower().Contains(lowerCaseQuery) ?? false) ||
+                    order.ClientName.ToLower().Contains(lowerCaseQuery) ||
+                    order.CourierName.ToLower().Contains(lowerCaseQuery) ||
+                    order.PickupAddress.ToLower().Contains(lowerCaseQuery) ||
+                    order.DeliveryAddress.ToLower().Contains(lowerCaseQuery) ||
+                    order.Status.ToString().ToLower().Contains(lowerCaseQuery) ||
+                    order.Comment.ToLower().Contains(lowerCaseQuery) ||
                     order.CreationDate.ToString("g").ToLower().Contains(lowerCaseQuery))
             );
         }
@@ -140,7 +140,7 @@ public class OrderTableViewModel : ViewModelBase
             return;
         }
         
-        order.CourierName = inputVm.Results[0]!;
+        order.CourierName = inputVm.Results[0];
         order.Status = OrderStatus.InProcess;
     }
 
@@ -153,6 +153,7 @@ public class OrderTableViewModel : ViewModelBase
                 _dbContext.Orders.Update(order);
             }
             await _dbContext.SaveChangesAsync();
+            await _messageService.ShowAsync(Strings.SaveChangesToDBSuccessful);
         }
         catch (Exception ex)
         {
@@ -251,7 +252,6 @@ public class OrderTableViewModel : ViewModelBase
             
             _dbContext.Orders.Add(order);
             await _dbContext.SaveChangesAsync();
-            await _messageService.ShowAsync(Strings.SaveChangesToDBSuccessful);
         }
         catch (Exception ex)
         {

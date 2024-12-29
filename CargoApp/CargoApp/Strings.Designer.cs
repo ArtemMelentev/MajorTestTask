@@ -393,7 +393,7 @@ namespace CargoApp {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Сохранение прошло успешно.
         /// </summary>
         internal static string SaveChangesToDBSuccessful {
             get {

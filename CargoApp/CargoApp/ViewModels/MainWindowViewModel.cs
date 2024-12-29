@@ -1,5 +1,4 @@
-﻿using CargoApp.DB;
-using Catel.IoC;
+﻿using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
 
