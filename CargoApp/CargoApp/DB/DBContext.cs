@@ -2,6 +2,7 @@
 using System.Text.Json;
 using CargoApp.Models;
 using CargoApp.Utilities;
+using CargoApp.Utilities.ExtensionClasses;
 using Microsoft.EntityFrameworkCore;
 
 namespace CargoApp.DB;
@@ -43,10 +44,15 @@ public class DBContext : DbContext
     {
         foreach (var entry in ChangeTracker.Entries())
         {
-            if (entry is { Entity: OrderModel order, State: EntityState.Added or EntityState.Modified })
+            if (entry is not { Entity: OrderModel order, State: EntityState.Added or EntityState.Modified })
             {
-                order.CreationDate = order.CreationDate.ToUniversalTime();
+                continue;
             }
+            if (!order.IsCorrect())
+            {
+                continue;
+            }
+            order.CreationDate = order.CreationDate.ToUniversalTime();
         }
 
         return await base.SaveChangesAsync(cancellationToken);
