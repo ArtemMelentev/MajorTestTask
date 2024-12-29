@@ -105,6 +105,24 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Не удалось подключиться к серверу базы данных. Проверьте введённые данные.&quot;.
+        /// </summary>
+        internal static string ConnectionError {
+            get {
+                return ResourceManager.GetString("ConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подключение успешно.
+        /// </summary>
+        internal static string ConnectionSuccessful {
+            get {
+                return ResourceManager.GetString("ConnectionSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подключиться к базе данных.
         /// </summary>
         internal static string ConnectToDB {
@@ -137,6 +155,33 @@ namespace CargoApp {
         internal static string CreationDate {
             get {
                 return ResourceManager.GetString("CreationDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проверьте правильность введенных данных.
+        /// </summary>
+        internal static string DatabaseConnectionInfoMessage {
+            get {
+                return ResourceManager.GetString("DatabaseConnectionInfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ошибка при создании базы данных.
+        /// </summary>
+        internal static string DBCreationError {
+            get {
+                return ResourceManager.GetString("DBCreationError", resourceCulture);
+            }
+        }
+            
+        /// <summary>
+        ///   Looks up a localized string similar to База данных успешно создана.
+        /// </summary>
+        internal static string DBCreationSuccessful {
+            get {
+                return ResourceManager.GetString("DBCreationSuccessful", resourceCulture);
             }
         }
         

@@ -87,4 +87,19 @@
     <data name="EditOrderButton" xml:space="preserve">
         <value>Редактировать</value>
     </data>
+    <data name="DatabaseConnectionInfoMessage" xml:space="preserve">
+        <value>Проверьте правильность введенных данных</value>
+    </data>
+    <data name="ConnectionSuccessful" xml:space="preserve">
+        <value>Подключение успешно</value>
+    </data>
+    <data name="ConnectionError" xml:space="preserve">
+        <value>"Не удалось подключиться к серверу базы данных. Проверьте введённые данные."</value>
+    </data>
+    <data name="DBCreationSuccessful" xml:space="preserve">
+        <value>База данных успешно создана</value>
+    </data>
+    <data name="DBCreationError" xml:space="preserve">
+        <value>Ошибка при создании базы данных</value>
+    </data>
 </root>

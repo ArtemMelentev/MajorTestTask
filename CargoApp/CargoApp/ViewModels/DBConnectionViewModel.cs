@@ -86,7 +86,7 @@ public class DBConnectionViewModel : ViewModelBase
         bool result = await TestConnectionAsync(connectionString);
         if (!result)
         {
-            await _messageService.ShowErrorAsync($"Проверьте правильность введенных данных");
+            await _messageService.ShowErrorAsync(Strings.DatabaseConnectionInfoMessage);
             return;
         }
 
@@ -96,8 +96,8 @@ public class DBConnectionViewModel : ViewModelBase
         }
         
         await CreateDatabaseAsync();
-
-        await _messageService.ShowAsync("Подключение успешно!");
+        
+        await _messageService.ShowAsync(Strings.ConnectionSuccessful);
         await CloseViewModelAsync(true);
     }
 
@@ -121,7 +121,7 @@ public class DBConnectionViewModel : ViewModelBase
         }
         catch (Exception ex)
         {
-            await _messageService.ShowErrorAsync("Не удалось подключиться к серверу базы данных. Проверьте введённые данные." + ex);
+            await _messageService.ShowErrorAsync(Strings.ConnectionError + ex);
         }
 
         return false;
@@ -136,12 +136,12 @@ public class DBConnectionViewModel : ViewModelBase
 
             if (result)
             {
-                await _messageService.ShowAsync($"База данных {GlobalConstants.DataBaseName} успешно создана.");   
+                await _messageService.ShowAsync(Strings.DBCreationSuccessful);
             }
         }
         catch (Exception ex)
         {
-            await _messageService.ShowErrorAsync($"Ошибка при создании базы данных {GlobalConstants.DataBaseName}." + ex);
+            await _messageService.ShowErrorAsync(Strings.DBCreationError + ex);
         }
     }
 
