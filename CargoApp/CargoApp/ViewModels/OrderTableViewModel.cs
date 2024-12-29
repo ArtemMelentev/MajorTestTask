@@ -241,12 +241,17 @@ public class OrderTableViewModel : ViewModelBase
             }
 
             var order = inputVM.GetOrderModel();
-
+            if (!order.IsCorrect())
+            {
+                await _messageService.ShowAsync(Strings.OrderIncorrect);
+                return;
+            }
             FilteredOrders.Add(order);
             Orders.Add(order);
             
             _dbContext.Orders.Add(order);
             await _dbContext.SaveChangesAsync();
+            await _messageService.ShowAsync(Strings.SaveChangesToDBSuccessful);
         }
         catch (Exception ex)
         {

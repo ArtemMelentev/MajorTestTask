@@ -9,8 +9,9 @@ public static class OrderModelExtensionMethods
     {
         bool isClientNameCorrect = !String.IsNullOrEmpty(order.ClientName);
         bool isPickupAddressCorrect = !String.IsNullOrEmpty(order.PickupAddress);
-
-        bool isOrderCorrect = isClientNameCorrect && isPickupAddressCorrect;
+        bool isParametersCorrect = order is { Weight: > 0, X: > 0, Y: > 0, Z: > 0 };
+        
+        bool isOrderCorrect = isClientNameCorrect && isPickupAddressCorrect && isParametersCorrect;
         
         switch (order.Status)
         {

@@ -393,6 +393,15 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SaveChangesToDBSuccessful {
+            get {
+                return ResourceManager.GetString("SaveChangesToDBSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Сохранить.
         /// </summary>
         internal static string SaveToDBButton {

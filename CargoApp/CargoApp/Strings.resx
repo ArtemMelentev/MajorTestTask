@@ -153,4 +153,7 @@
     <data name="Z" xml:space="preserve">
         <value>Высота</value>
     </data>
+    <data name="SaveChangesToDBSuccessful" xml:space="preserve">
+        <value />
+    </data>
 </root>

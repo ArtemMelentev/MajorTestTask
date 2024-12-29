@@ -143,13 +143,17 @@ public class OrderViewModel : InputViewModelBase
     public bool IsShowComment => SelectedStatus is OrderStatus.New or OrderStatus.Canceled ||
                                  _orderWindowMode is OrderWindowMode.Input;
     public bool IsShowCreationDate => SelectedStatus == OrderStatus.New && _orderWindowMode != OrderWindowMode.Input;
-    public bool IsShowStatus => SelectedStatus == OrderStatus.New && _orderWindowMode != OrderWindowMode.Input;
+    public bool IsShowStatus => _orderWindowMode != OrderWindowMode.Input;
 
     public OrderViewModel(string title, OrderModel orderModel, OrderWindowMode orderWindowMode, bool canOK = false,
         bool canCancel = false) : base(title, canOK, canCancel)
     {
         _orderWindowMode = orderWindowMode;
-        
+
+        Weight = orderModel.Weight;
+        X = orderModel.X;
+        Y = orderModel.Y;
+        Z = orderModel.Z;
         ClientName = orderModel.ClientName;
         CourierName = orderModel.CourierName;
         PickupAddress = orderModel.PickupAddress;
