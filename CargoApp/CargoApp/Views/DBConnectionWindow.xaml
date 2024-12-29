@@ -6,6 +6,9 @@
                   xmlns:ignore="http://www.ignore.com"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
+                  xmlns:lex="http://wpflocalizeextension.codeplex.com"
+                  lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
+                  lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d ignore"
                   d:DataContext="{d:DesignInstance viewModels:DBConnectionViewModel}">
         <catel:DataWindow.Resources>
@@ -28,7 +31,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
                 
-            <TextBlock Text="Host" 
+            <TextBlock Text="{lex:Loc Host}" 
                        VerticalAlignment="Center" 
                        Margin="0,10,10,10" />
             <TextBox Grid.Row="0" Grid.Column="1" 
@@ -37,7 +40,7 @@
                      Margin="0,10,0,10"
                      Text="{Binding Host}"/>
             
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Port" 
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{lex:Loc Port}" 
                        VerticalAlignment="Center" 
                        Margin="0,10,10,10" />
             <TextBox Grid.Row="1" Grid.Column="1" 
@@ -46,7 +49,7 @@
                      Margin="0,10,0,10"
                      Text="{Binding Port}"/>
             
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Username" 
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{lex:Loc Username}" 
                        VerticalAlignment="Center" 
                        Margin="0,10,10,10" />
             <TextBox Grid.Row="2" Grid.Column="1" 
@@ -55,7 +58,7 @@
                      Margin="0,10,0,10"
                      Text="{Binding Username}"/>
             
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="Password" 
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="{lex:Loc Password}" 
                        VerticalAlignment="Center" 
                        Margin="0,10,10,10" />
             <TextBox Grid.Row="3" Grid.Column="1" 
@@ -64,7 +67,7 @@
                      Margin="0,10,0,10"
                      Text="{Binding Password}"/>
             
-            <Button Grid.Row="4" Grid.Column="0" Content="Connect" 
+            <Button Grid.Row="4" Grid.Column="0" Content="{lex:Loc Connect}" 
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
                     Width="80" 

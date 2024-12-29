@@ -7,7 +7,6 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                   xmlns:lex="http://wpflocalizeextension.codeplex.com"
-                  xmlns:res="clr-namespace:CargoApp"
                   lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d ignore"
@@ -116,13 +115,13 @@
                             Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <StackPanel Grid.Row="7" Grid.Column="0" Margin="10">
-                        <TextBlock Text="Select Order Status:" Margin="0,0,0,10" />
+                        <TextBlock Text="{lex:Loc OrderStatus}" Margin="0,0,0,10" />
                         <ComboBox ItemsSource="{Binding OrderStatuses}" 
                                   SelectedItem="{Binding SelectedStatus}" 
                                   Width="200" />
                 </StackPanel>
                 
-                <Button Content="OK" 
+                <Button Content="{lex:Loc OKButton}" 
                         Grid.Row="8" 
                         Grid.Column="0"
                         HorizontalAlignment="Left" 
@@ -133,7 +132,7 @@
                         Visibility="{Binding CanOK, 
                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
-                <Button Content="Cancel" 
+                <Button Content="{lex:Loc CancelButton}" 
                         Grid.Row="8" 
                         Grid.Column="1" 
                         HorizontalAlignment="Right" 
