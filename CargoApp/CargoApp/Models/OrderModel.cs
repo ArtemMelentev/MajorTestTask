@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using CargoApp.Utilities;
 using CargoApp.Utilities.Enums;
 
 namespace CargoApp.Models;
@@ -9,22 +10,61 @@ public class OrderModel : INotifyPropertyChanged
 {
     private string _clientName = String.Empty;
     private string _courierName = String.Empty;
-    private string _cargoDetails = String.Empty;
+    private double _weight;
+    private double _x;
+    private double _y; 
+    private double _z; 
     private string _pickupAddress = String.Empty;
     private string _deliveryAddress = String.Empty;
     private OrderStatus _status = OrderStatus.New;
     private string _comment = String.Empty;
     private DateTime _creationDate = DateTime.Now;
 
+    public double Weight
+    {
+        get => _weight;
+        set
+        {
+            _weight = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public double X
+    {
+        get => _x;
+        set
+        {
+            _x = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public double Y
+    {
+        get => _y;
+        set
+        {
+            _y = value;
+            OnPropertyChanged();
+        }
+    }
+    
+    public double Z
+    {
+        get => _z;
+        set
+        {
+            _z = value;
+            OnPropertyChanged();
+        }
+    }
+    
     public string ClientName
     {
         get => _clientName;
         set
         {
-            if (value == _clientName)
-            {
-                return;
-            }
             _clientName = value;
             OnPropertyChanged();
         }
@@ -35,25 +75,7 @@ public class OrderModel : INotifyPropertyChanged
         get => _courierName;
         set
         {
-            if (value == _courierName)
-            {
-                return;
-            }
             _courierName = value;
-            OnPropertyChanged();
-        }
-    }
-
-    public string CargoDetails
-    {
-        get => _cargoDetails;
-        set
-        {
-            if (value == _cargoDetails)
-            {
-                return;
-            }
-            _cargoDetails = value;
             OnPropertyChanged();
         }
     }
@@ -63,10 +85,6 @@ public class OrderModel : INotifyPropertyChanged
         get => _pickupAddress;
         set
         {
-            if (value == _pickupAddress)
-            {
-                return;
-            }
             _pickupAddress = value;
             OnPropertyChanged();
         }
@@ -77,10 +95,6 @@ public class OrderModel : INotifyPropertyChanged
         get => _deliveryAddress;
         set
         {
-            if (value == _deliveryAddress)
-            {
-                return;
-            }
             _deliveryAddress = value;
             OnPropertyChanged();
         }
@@ -91,10 +105,6 @@ public class OrderModel : INotifyPropertyChanged
         get => _status;
         set
         {
-            if (value == _status)
-            {
-                return;
-            }
             _status = value;
             OnPropertyChanged();
         }
@@ -105,10 +115,6 @@ public class OrderModel : INotifyPropertyChanged
         get => _comment;
         set
         {
-            if (value == _comment)
-            {
-                return;
-            }
             _comment = value;
             OnPropertyChanged();
         }
@@ -119,10 +125,6 @@ public class OrderModel : INotifyPropertyChanged
         get => _creationDate;
         set
         {
-            if (value.Equals(_creationDate))
-            {
-                return;
-            }
             _creationDate = value;
             OnPropertyChanged();
         }
@@ -139,7 +141,7 @@ public class OrderModel : INotifyPropertyChanged
 
     public override string ToString()
     {
-        return "Order : " + ClientName + " " + CourierName + " " + CargoDetails + " " + PickupAddress + " " +
-               DeliveryAddress + " " + CreationDate + " " + Comment;
+        return "Order : " + ClientName + " " + CourierName + " " + PickupAddress + " " +
+               Weight + " " + X + " " + Y + " " + Z + " " + DeliveryAddress + " " + CreationDate + " " + Comment;
     }
 }

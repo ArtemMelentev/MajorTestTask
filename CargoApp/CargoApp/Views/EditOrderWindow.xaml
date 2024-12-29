@@ -7,6 +7,7 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                   xmlns:lex="http://wpflocalizeextension.codeplex.com"
+                  xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
                   lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d ignore"
@@ -67,7 +68,7 @@
                          Visibility="{Binding IsShowCargoDetails, 
                          Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
-                <TextBlock Text="{lex:Loc PickupAddress}" 
+                <!--<TextBlock Text="{lex:Loc PickupAddress}" 
                            VerticalAlignment="Center" 
                            Grid.Row="3" 
                            Margin="0,10,10,10" />
@@ -79,6 +80,26 @@
                          Text="{Binding PickupAddress}"
                          Visibility="{Binding IsShowPickupAddress, 
                          Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                         -->
+                
+                <TextBlock Grid.Row="3" Grid.Column="0" 
+                           Text="{lex:Loc CargoDetails}" 
+                           VerticalAlignment="Center" 
+                           Margin="0,10,10,10" />
+                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding DoubleValue}" Minimum="0" Maximum="100" />
+
+                <!--<TextBlock Text="{lex:Loc PickupAddress}" 
+                           VerticalAlignment="Center" 
+                           Grid.Row="3" 
+                           Margin="0,10,10,10" />
+                <TextBox Grid.Row="3" 
+                         Grid.Column="1" 
+                         Width="200" 
+                         VerticalAlignment="Center" 
+                         Margin="0,10,0,10" 
+                         Text="{Binding PickupAddress}"
+                         Visibility="{Binding IsShowPickupAddress, 
+                         Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
                 
                 <TextBlock Text="{lex:Loc DeliveryAddress}" 
                            VerticalAlignment="Center" 

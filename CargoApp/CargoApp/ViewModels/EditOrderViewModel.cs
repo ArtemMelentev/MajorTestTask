@@ -142,7 +142,6 @@ public class EditOrderViewModel : InputViewModelBase
     {
         ClientName = orderModel.ClientName;
         CourierName = orderModel.CourierName;
-        CargoDetails = orderModel.CargoDetails;
         PickupAddress = orderModel.PickupAddress;
         DeliveryAddress = orderModel.DeliveryAddress;
         Comment = orderModel.Comment;
@@ -162,7 +161,6 @@ public class EditOrderViewModel : InputViewModelBase
         {
             ClientName = ClientName,
             CourierName = CourierName,
-            CargoDetails = CargoDetails,
             PickupAddress = PickupAddress,
             DeliveryAddress = DeliveryAddress,
             Comment = Comment,

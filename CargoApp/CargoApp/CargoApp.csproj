@@ -22,6 +22,7 @@
       </PackageReference>
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.2" />
       <PackageReference Include="WPFLocalizeExtension" Version="3.10.0" />
+      <PackageReference Include="Xceed.Products.Wpf.Toolkit.Full" Version="4.6.24151.1544" />
     </ItemGroup>
 
     <ItemGroup>

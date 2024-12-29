@@ -107,7 +107,6 @@ public class OrderTableViewModel : ViewModelBase
                 Orders.Where(order =>
                     (order.ClientName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.CourierName?.ToLower().Contains(lowerCaseQuery) ?? false) ||
-                    (order.CargoDetails?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.PickupAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.DeliveryAddress?.ToLower().Contains(lowerCaseQuery) ?? false) ||
                     (order.Status.ToString().ToLower().Contains(lowerCaseQuery)) ||
@@ -215,7 +214,6 @@ public class OrderTableViewModel : ViewModelBase
         }
         originOrder.ClientName = inputVM.ClientName;
         originOrder.CourierName = inputVM.CourierName;
-        originOrder.CargoDetails = inputVM.CargoDetails;
         originOrder.PickupAddress = inputVM.PickupAddress;
         originOrder.DeliveryAddress = inputVM.DeliveryAddress;
         originOrder.Comment = inputVM.Comment;
@@ -232,7 +230,6 @@ public class OrderTableViewModel : ViewModelBase
                 canOK: true, canCancel: true,
                 new InputField(Strings.ClientName),
                 new InputField(Strings.CourierName),
-                new InputField(Strings.CargoDetails),
                 new InputField(Strings.PickupAddress),
                 new InputField(Strings.DeliveryAddress),
                 new InputField(Strings.Comment));
@@ -247,10 +244,9 @@ public class OrderTableViewModel : ViewModelBase
             {
                 ClientName = inputVM.Results[0],
                 CourierName = inputVM.Results[1],
-                CargoDetails = inputVM.Results[2],
-                PickupAddress = inputVM.Results[3],
-                DeliveryAddress = inputVM.Results[4],
-                Comment = inputVM.Results[5],
+                PickupAddress = inputVM.Results[2],
+                DeliveryAddress = inputVM.Results[3],
+                Comment = inputVM.Results[4],
                 Status = OrderStatus.New
             };
 
