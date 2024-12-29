@@ -2,9 +2,9 @@
 
 namespace CargoApp.Views;
 
-public partial class InputOrderWindow
+public partial class EditOrderWindow
 {
-    public InputOrderWindow(): base(DataWindowMode.Custom)
+    public EditOrderWindow(): base(DataWindowMode.Custom)
     {
         InitializeComponent();
     }

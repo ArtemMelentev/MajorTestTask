@@ -4,7 +4,7 @@ using CargoApp.Utilities.Enums;
 
 namespace CargoApp.ViewModels;
 
-public class InputOrderViewModel : InputViewModelBase
+public class EditOrderViewModel : InputViewModelBase
 {
     private string _clientName = String.Empty;
     private string _courierName = String.Empty;
@@ -137,7 +137,7 @@ public class InputOrderViewModel : InputViewModelBase
     public bool IsShowComment => SelectedStatus is OrderStatus.New or OrderStatus.Canceled;
     public bool IsShowCreationDate => SelectedStatus == OrderStatus.New;
 
-    public InputOrderViewModel(string title, OrderModel orderModel,bool canOK = false, bool canCancel = false) :
+    public EditOrderViewModel(string title, OrderModel orderModel,bool canOK = false, bool canCancel = false) :
         base(title, canOK, canCancel)
     {
         ClientName = orderModel.ClientName;
