@@ -166,6 +166,12 @@ public class OrderTableViewModel : ViewModelBase
         {
             return;
         }
+
+        bool result = await ShowQuestionBeforeDeletionAsync();
+        if (!result)
+        {
+            return;
+        }
         
         try
         {
@@ -260,5 +266,15 @@ public class OrderTableViewModel : ViewModelBase
         }
 
         return true;
+    }
+    
+    private async Task<bool> ShowQuestionBeforeDeletionAsync()
+    {
+        var order = FilteredOrders[SelectedOrderIndex];
+        
+        var messageVM = new MessageViewModel(String.Empty, Strings.DeleteOrderQuestion + " " + order);
+        var messageResult = await _uiVisualizerService.ShowDialogAsync(messageVM);
+
+        return messageResult.DialogResult ?? false;
     }
 }

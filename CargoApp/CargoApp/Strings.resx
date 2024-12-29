@@ -135,4 +135,7 @@
     <data name="CreateOrderError" xml:space="preserve">
         <value>Ошибка при создании заявки</value>
     </data>
+    <data name="DeleteOrderQuestion" xml:space="preserve">
+        <value>Вы уверены что хотите удалить заявку</value>
+    </data>
 </root>

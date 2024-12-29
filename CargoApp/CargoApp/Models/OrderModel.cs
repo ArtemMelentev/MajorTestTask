@@ -136,4 +136,10 @@ public class OrderModel : INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+    public override string ToString()
+    {
+        return "Order : " + ClientName + " " + CourierName + " " + CargoDetails + " " + PickupAddress + " " +
+               DeliveryAddress + " " + CreationDate + " " + Comment;
+    }
 }

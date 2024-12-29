@@ -222,6 +222,15 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вы уверены что хотите удалить заявку.
+        /// </summary>
+        internal static string DeleteOrderQuestion {
+            get {
+                return ResourceManager.GetString("DeleteOrderQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Адрес Доставки.
         /// </summary>
         internal static string DeliveryAddress {
