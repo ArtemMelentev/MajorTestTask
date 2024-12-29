@@ -14,7 +14,7 @@ public class MainWindowViewModel : ViewModelBase
     private readonly IUIVisualizerService _uiVisualizerService;
     private readonly DBContext _dbContext;
     
-    public TaskCommand CreateDataBaseCommand { get; private set; }
+    public TaskCommand ConnectDataBaseCommand { get; private set; }
     public TaskCommand CreateOrderCommand { get; private set; }
     public TaskCommand ShowOrderTableCommand { get; private set; }
 
@@ -24,17 +24,18 @@ public class MainWindowViewModel : ViewModelBase
         _uiVisualizerService = DependencyResolver.Resolve<UIVisualizerService>();
         _dbContext = ServiceLocator.Default.ResolveType<DBContext>();
         
-        CreateDataBaseCommand = new TaskCommand(CreateDataBaseAsync);
+        ConnectDataBaseCommand = new TaskCommand(ConnectDataBaseAsync);
         CreateOrderCommand = new TaskCommand(CreateOrderAsync);
         ShowOrderTableCommand = new TaskCommand(ShowOrderTableAsync);
     }
 
-    private async Task CreateDataBaseAsync()
+    private async Task ConnectDataBaseAsync()
     {
         try
         {
             await _dbContext.Database.EnsureCreatedAsync();
             await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");
+            await _dbContext.Database.CanConnectAsync();
         }
         catch (Exception ex)
         {

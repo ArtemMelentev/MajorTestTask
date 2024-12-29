@@ -17,7 +17,7 @@ public class DBContext : DbContext
     {
         foreach (var entry in ChangeTracker.Entries())
         {
-            if (entry is { Entity: OrderModel order, State: EntityState.Added })
+            if (entry is { Entity: OrderModel order, State: EntityState.Added or EntityState.Modified })
             {
                 order.CreationDate = order.CreationDate.ToUniversalTime();
             }
@@ -30,7 +30,7 @@ public class DBContext : DbContext
     {
         foreach (var entry in ChangeTracker.Entries())
         {
-            if (entry is { Entity: OrderModel order, State: EntityState.Added })
+            if (entry is { Entity: OrderModel order, State: EntityState.Added or EntityState.Modified })
             {
                 order.CreationDate = order.CreationDate.ToUniversalTime();
             }

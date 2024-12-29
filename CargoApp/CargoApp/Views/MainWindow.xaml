@@ -16,7 +16,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button Grid.Row="0"  Margin="5" Width="200" HorizontalAlignment="Left"
-                Command="{Binding CreateDataBaseCommand}"
+                Command="{Binding ConnectDataBaseCommand}"
                 Content="Создать базу данных" />
         <Button Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left"
                 Command="{Binding CreateOrderCommand}"
