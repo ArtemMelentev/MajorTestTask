@@ -33,9 +33,12 @@ public class MainWindowViewModel : ViewModelBase
     {
         try
         {
-            await _dbContext.Database.EnsureCreatedAsync();
+            /*await _dbContext.Database.EnsureCreatedAsync();
             await _messageService.ShowAsync("Таблица создана успешно в PostgreSQL!");
-            await _dbContext.Database.CanConnectAsync();
+            await _dbContext.Database.CanConnectAsync();*/
+            var dbConnectionVM = new DBConnectionViewModel();
+            await _uiVisualizerService.ShowDialogAsync(dbConnectionVM);
+
         }
         catch (Exception ex)
         {
