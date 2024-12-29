@@ -141,4 +141,16 @@
     <data name="OrderIncorrect" xml:space="preserve">
         <value>Введены недопустимые данные для заявки</value>
     </data>
+    <data name="Weight" xml:space="preserve">
+        <value>Вес</value>
+    </data>
+    <data name="X" xml:space="preserve">
+        <value>Длина</value>
+    </data>
+    <data name="Y" xml:space="preserve">
+        <value>Глубина</value>
+    </data>
+    <data name="Z" xml:space="preserve">
+        <value>Высота</value>
+    </data>
 </root>

@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using CargoApp.Models;
 using CargoApp.Utilities.Enums;
+using NpgsqlTypes;
 
 namespace CargoApp.ViewModels;
 
@@ -161,6 +162,10 @@ public class EditOrderViewModel : InputViewModelBase
     {
         return new OrderModel
         {
+            Weight = Weight,
+            X = X,
+            Y = Y,
+            Z = Z,
             ClientName = ClientName,
             CourierName = CourierName,
             PickupAddress = PickupAddress,

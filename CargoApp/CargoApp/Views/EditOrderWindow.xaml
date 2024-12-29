@@ -78,28 +78,36 @@
                            VerticalAlignment="Center" 
                            Margin="0,10,10,10" />
                 <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Weight}"
-                                   Minimum="0"/>
+                                   Minimum="0"
+                                   Visibility="{Binding IsShowCargoDetails, 
+                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <TextBlock Grid.Row="4" Grid.Column="0" 
                            Text="{lex:Loc X}" 
                            VerticalAlignment="Center" 
                            Margin="0,10,10,10" />
-                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding X}"
-                                   Minimum="0"/>
+                <xctk:DoubleUpDown Grid.Row="4" Grid.Column="1" Value="{Binding X}"
+                                   Minimum="0"
+                                   Visibility="{Binding IsShowCargoDetails, 
+                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <TextBlock Grid.Row="5" Grid.Column="0" 
                            Text="{lex:Loc Y}" 
                            VerticalAlignment="Center" 
                            Margin="0,10,10,10" />
-                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Y}"
-                                   Minimum="0"/>
+                <xctk:DoubleUpDown Grid.Row="5" Grid.Column="1" Value="{Binding Y}"
+                                   Minimum="0"
+                                   Visibility="{Binding IsShowCargoDetails, 
+                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <TextBlock Grid.Row="6" Grid.Column="0" 
                            Text="{lex:Loc Z}" 
                            VerticalAlignment="Center" 
                            Margin="0,10,10,10" />
-                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Z}"
-                                   Minimum="0"/>
+                <xctk:DoubleUpDown Grid.Row="6" Grid.Column="1" Value="{Binding Z}"
+                                   Minimum="0"
+                                   Visibility="{Binding IsShowCargoDetails, 
+                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <TextBlock Text="{lex:Loc DeliveryAddress}" 
                            VerticalAlignment="Center" 
