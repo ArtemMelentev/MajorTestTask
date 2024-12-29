@@ -243,6 +243,7 @@ public class OrderTableViewModel : ViewModelBase
             var order = inputVM.GetOrderModel();
 
             FilteredOrders.Add(order);
+            Orders.Add(order);
             
             _dbContext.Orders.Add(order);
             await _dbContext.SaveChangesAsync();

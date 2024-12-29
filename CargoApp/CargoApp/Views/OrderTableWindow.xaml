@@ -65,7 +65,8 @@
         </StackPanel>
         
         <DataGrid x:Name="DataGrid"
-                  Grid.Row="1" Grid.Column="0" 
+                  Grid.Row="1" 
+                  Grid.Column="0" Grid.ColumnSpan="6"
                   ItemsSource="{Binding FilteredOrders}"
                   SelectedIndex="{Binding SelectedOrderIndex}"
                   AutoGenerateColumns="True" 
