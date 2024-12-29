@@ -3,6 +3,7 @@ using CargoApp.DB;
 using CargoApp.Models;
 using CargoApp.Utilities;
 using CargoApp.Utilities.Enums;
+using CargoApp.Utilities.ExtensionClasses;
 using Catel.IoC;
 using Catel.MVVM;
 using Catel.Services;
@@ -205,7 +206,13 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync(Strings.EditOrderCancelMessage);
             return;
         }
-        
+
+        var newOrder = inputVM.GetOrderModel();
+        if (!newOrder.IsCorrect())
+        {
+            await _messageService.ShowAsync(Strings.OrderIncorrect);
+            return;
+        }
         originOrder.ClientName = inputVM.ClientName;
         originOrder.CourierName = inputVM.CourierName;
         originOrder.CargoDetails = inputVM.CargoDetails;

@@ -138,4 +138,7 @@
     <data name="DeleteOrderQuestion" xml:space="preserve">
         <value>Вы уверены что хотите удалить заявку</value>
     </data>
+    <data name="OrderIncorrect" xml:space="preserve">
+        <value>Введены недопустимые данные для заявки</value>
+    </data>
 </root>

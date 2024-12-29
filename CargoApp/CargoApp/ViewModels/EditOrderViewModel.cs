@@ -155,4 +155,19 @@ public class EditOrderViewModel : InputViewModelBase
             OrderStatuses.Remove(OrderStatus.New);
         }
     }
+
+    public OrderModel GetOrderModel()
+    {
+        return new OrderModel
+        {
+            ClientName = ClientName,
+            CourierName = CourierName,
+            CargoDetails = CargoDetails,
+            PickupAddress = PickupAddress,
+            DeliveryAddress = DeliveryAddress,
+            Comment = Comment,
+            Status = SelectedStatus,
+            CreationDate = CreationDate
+        };
+    }
 }

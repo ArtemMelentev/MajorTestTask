@@ -321,6 +321,15 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Введены недопустимые данные для заявки.
+        /// </summary>
+        internal static string OrderIncorrect {
+            get {
+                return ResourceManager.GetString("OrderIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Заявка не выбрана.
         /// </summary>
         internal static string OrderIndexError {
