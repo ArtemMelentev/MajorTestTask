@@ -1,16 +1,24 @@
-﻿using CargoApp.Models;
+﻿using System.IO;
+using System.Text.Json;
+using CargoApp.Models;
+using CargoApp.Utilities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CargoApp.DB;
 
 public class DBContext : DbContext
 {
+    private readonly string _connectionString;
     public DbSet<OrderModel> Orders { get; set; }
+    
+    public DBContext(string connectionString)
+    {
+        _connectionString = GetConnectionString();
+    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(
-            "Host=localhost;Port=5432;Database=ordersdb;Username=postgres;Password=99Dipidi");
+        optionsBuilder.UseNpgsql(_connectionString);
     }
     
     public override int SaveChanges()
@@ -37,5 +45,24 @@ public class DBContext : DbContext
         }
 
         return await base.SaveChangesAsync(cancellationToken);
+    }
+
+    private static string GetConnectionString()
+    {
+        if (!File.Exists(GlobalConstants.DBJsonFilePath))
+        {
+            return String.Empty;
+        }
+        
+        var config = JsonSerializer.Deserialize<DbConfig>(GlobalConstants.DBJsonFilePath);
+        if (config is null)
+        {
+            return String.Empty;
+        }
+        
+        var connectionString = $"Host={config.Host};Port={config.Port};Username={config.Username};" +
+                               $"Password={config.Password};Database={config.DatabaseName};";
+
+        return connectionString;
     }
 }

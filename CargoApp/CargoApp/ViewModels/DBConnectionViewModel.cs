@@ -84,29 +84,9 @@ public class DBConnectionViewModel : ViewModelBase
             await CreateDatabaseAsync();
 
             await _messageService.ShowAsync("Подключение успешно!");
+            await CloseViewModelAsync(true);
             
             
-        }
-        catch (Exception ex)
-        {
-            await _messageService.ShowErrorAsync($"Ошибка: {ex.Message}");
-        }
-    }
-
-    private async Task SaveDatabaseConfigAsync()
-    {
-        try
-        {
-            // Проверить подключение
-            var connectionString = BuildConnectionString(false); // Без указания имени базы
-            await TestConnectionAsync(connectionString);
-
-            // Сохранить конфигурацию
-            SaveConfigToFile();
-            // Создать базу данных
-            await CreateDatabaseAsync();
-            
-            await _messageService.ShowAsync("Настройки успешно сохранены!");
         }
         catch (Exception ex)
         {
