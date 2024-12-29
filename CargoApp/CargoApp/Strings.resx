@@ -69,4 +69,22 @@
     <data name="OpenOrdersTable" xml:space="preserve">
         <value>Открыть таблицу заявок</value>
     </data>
+    <data name="SearchButton" xml:space="preserve">
+        <value>Поиск</value>
+    </data>
+    <data name="CreateOrderButton" xml:space="preserve">
+        <value>Создать заявку</value>
+    </data>
+    <data name="SubmitInProcessButton" xml:space="preserve">
+        <value>Передать на выполнение</value>
+    </data>
+    <data name="SaveToDBButton" xml:space="preserve">
+        <value>Сохранить</value>
+    </data>
+    <data name="DeleteOrderButton" xml:space="preserve">
+        <value>Удалить</value>
+    </data>
+    <data name="EditOrderButton" xml:space="preserve">
+        <value>Редактировать</value>
+    </data>
 </root>

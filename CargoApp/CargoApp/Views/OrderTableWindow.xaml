@@ -6,6 +6,9 @@
                    xmlns:local="clr-namespace:CargoApp.Views"
                    xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                    xmlns:catel="http://schemas.catelproject.com"
+                   xmlns:lex="http://wpflocalizeextension.codeplex.com"
+                   lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
+                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                    mc:Ignorable="d"
                    Title="OrderTableWindow" Height="450" Width="800"
                    d:DataContext="{d:DesignInstance viewModels:OrderTableViewModel}">
@@ -26,37 +29,37 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
             <TextBox Width="200" 
                      Text="{Binding SearchQuery}"/>
-            <Button Content="Искать" 
+            <Button Content="{lex:Loc SearchButton}" 
                     Command="{Binding SearchOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" Margin="10">
-            <Button Content="Создать заявку"
+            <Button Content="{lex:Loc CreateOrderButton}"
                     Command="{Binding CreateOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="10">
-            <Button Content="Передать на выполнение" 
+            <Button Content="{lex:Loc SubmitInProcessButton}" 
                     Command="{Binding SubmitInProcessCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal" Margin="10">
-            <Button Content="Сохранить" 
+            <Button Content="{lex:Loc SaveToDBButton}" 
                     Command="{Binding SaveToDatabaseCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
         
         <StackPanel Grid.Row="0" Grid.Column="4" Orientation="Horizontal" Margin="10">
-            <Button Content="Удалить заявку" 
+            <Button Content="{lex:Loc DeleteOrderButton}" 
                     Command="{Binding DeleteOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>
          
         <StackPanel Grid.Row="0" Grid.Column="5" Orientation="Horizontal" Margin="10">
-            <Button Content="Редактировать" 
+            <Button Content="{lex:Loc EditOrderButton}" 
                     Command="{Binding EditOrderCommand}"
                     Margin="5,0,0,0" />
         </StackPanel>

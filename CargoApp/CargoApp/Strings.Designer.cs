@@ -123,6 +123,15 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Создать заявку.
+        /// </summary>
+        internal static string CreateOrderButton {
+            get {
+                return ResourceManager.GetString("CreateOrderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Дата Создания.
         /// </summary>
         internal static string CreationDate {
@@ -132,11 +141,29 @@ namespace CargoApp {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Удалить.
+        /// </summary>
+        internal static string DeleteOrderButton {
+            get {
+                return ResourceManager.GetString("DeleteOrderButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Адрес Доставки.
         /// </summary>
         internal static string DeliveryAddress {
             get {
                 return ResourceManager.GetString("DeliveryAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактировать.
+        /// </summary>
+        internal static string EditOrderButton {
+            get {
+                return ResourceManager.GetString("EditOrderButton", resourceCulture);
             }
         }
         
@@ -200,6 +227,33 @@ namespace CargoApp {
         internal static string Port {
             get {
                 return ResourceManager.GetString("Port", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сохранить.
+        /// </summary>
+        internal static string SaveToDBButton {
+            get {
+                return ResourceManager.GetString("SaveToDBButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поиск.
+        /// </summary>
+        internal static string SearchButton {
+            get {
+                return ResourceManager.GetString("SearchButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Передать на выполнение.
+        /// </summary>
+        internal static string SubmitInProcessButton {
+            get {
+                return ResourceManager.GetString("SubmitInProcessButton", resourceCulture);
             }
         }
         
