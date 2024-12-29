@@ -9,7 +9,6 @@ public class MainWindowViewModel : ViewModelBase
 {
     private readonly IMessageService _messageService;
     private readonly IUIVisualizerService _uiVisualizerService;
-    private readonly DBContext _dbContext;
 
     public bool IsConnectedToDB { get; set; }
     
@@ -20,7 +19,6 @@ public class MainWindowViewModel : ViewModelBase
     {
         _messageService = DependencyResolver.Resolve<IMessageService>();
         _uiVisualizerService = DependencyResolver.Resolve<UIVisualizerService>();
-        _dbContext = ServiceLocator.Default.ResolveType<DBContext>();
         
         ConnectDataBaseCommand = new TaskCommand(ConnectDataBaseAsync);
         ShowOrderTableCommand = new TaskCommand(ShowOrderTableAsync);

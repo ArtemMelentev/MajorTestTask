@@ -15,14 +15,18 @@ public class OrderTableViewModel : ViewModelBase
     private readonly IUIVisualizerService _uiVisualizerService;
     private readonly DBContext _dbContext;
     
-    public Command SearchOrderCommand { get; set; }
+    private ObservableCollection<OrderModel> _orders;
+    private ObservableCollection<OrderModel> _filteredOrders;
+    private string _searchQuery = String.Empty;
+    private int _selectedOrderIndex = -1;
+    
+    public Command SearchOrderCommand { get; private set; }
     public TaskCommand SubmitInProcessCommand { get; private set; }
     public TaskCommand SaveToDatabaseCommand { get; private set; }
     public TaskCommand DeleteOrderCommand { get; private set; }
     public TaskCommand EditOrderCommand { get; private set; }
     public TaskCommand CreateOrderCommand { get; private set; }
     
-    private ObservableCollection<OrderModel> _orders;
     public ObservableCollection<OrderModel> Orders
     {
         get => _orders;
@@ -33,7 +37,6 @@ public class OrderTableViewModel : ViewModelBase
         }
     }
     
-    private ObservableCollection<OrderModel> _filteredOrders;
     public ObservableCollection<OrderModel> FilteredOrders
     {
         get => _filteredOrders;
@@ -43,8 +46,7 @@ public class OrderTableViewModel : ViewModelBase
             RaisePropertyChanged(nameof(FilteredOrders));
         }
     }
-
-    private string _searchQuery = String.Empty;
+    
     public string SearchQuery
     {
         get => _searchQuery;
@@ -54,8 +56,7 @@ public class OrderTableViewModel : ViewModelBase
             RaisePropertyChanged(nameof(SearchQuery));
         }
     }
-
-    private int _selectedOrderIndex = -1;
+    
     public int SelectedOrderIndex
     {
         get => _selectedOrderIndex;

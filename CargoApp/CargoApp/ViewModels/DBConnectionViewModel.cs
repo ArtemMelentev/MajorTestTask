@@ -17,7 +17,7 @@ public class DBConnectionViewModel : ViewModelBase
     private string _username = String.Empty;
     private string _password = String.Empty;
     
-    public TaskCommand ConnectToDBCommand { get; set; }
+    public TaskCommand ConnectToDBCommand { get; private set; }
 
     public string Host
     {
