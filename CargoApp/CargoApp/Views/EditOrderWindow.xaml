@@ -8,6 +8,7 @@
                   xmlns:viewModels="clr-namespace:CargoApp.ViewModels"
                   xmlns:lex="http://wpflocalizeextension.codeplex.com"
                   xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
                   lex:ResxLocalizationProvider.DefaultAssembly="CargoApp"
                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d ignore"
@@ -17,6 +18,9 @@
         </catel:DataWindow.Resources>
         <Grid Margin="20">
                 <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
@@ -45,7 +49,7 @@
                 
                 <TextBlock Text="{lex:Loc CourierName}" 
                            VerticalAlignment="Center" 
-                           Grid.Row="1" 
+                           Grid.Row="1" Grid.Column="0"
                            Margin="0,10,10,10" />
                 <TextBox Grid.Row="1" 
                          Grid.Column="1" 
@@ -55,11 +59,10 @@
                          Text="{Binding CourierName}"
                          Visibility="{Binding IsShowCourierName, 
                          Converter={StaticResource BooleanToVisibilityConverter}}"/>
-            
                 
                 <TextBlock Text="{lex:Loc PickupAddress}" 
                            VerticalAlignment="Center" 
-                           Grid.Row="2" 
+                           Grid.Row="2" Grid.Column="0"
                            Margin="0,10,10,10" />
                 <TextBox Grid.Row="2" 
                          Grid.Column="1" 
@@ -71,29 +74,38 @@
                          Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
-                           Text="AAAAAAAAAA" 
+                           Text="{lex:Loc Weight}" 
                            VerticalAlignment="Center" 
                            Margin="0,10,10,10" />
-                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding DoubleValue}" Minimum="0" Maximum="100" />
-
-                <!--<TextBlock Text="{lex:Loc PickupAddress}" 
+                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Weight}"
+                                   Minimum="0"/>
+                
+                <TextBlock Grid.Row="4" Grid.Column="0" 
+                           Text="{lex:Loc X}" 
                            VerticalAlignment="Center" 
-                           Grid.Row="3" 
                            Margin="0,10,10,10" />
-                <TextBox Grid.Row="3" 
-                         Grid.Column="1" 
-                         Width="200" 
-                         VerticalAlignment="Center" 
-                         Margin="0,10,0,10" 
-                         Text="{Binding PickupAddress}"
-                         Visibility="{Binding IsShowPickupAddress, 
-                         Converter={StaticResource BooleanToVisibilityConverter}}"/>-->
+                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding X}"
+                                   Minimum="0"/>
+                
+                <TextBlock Grid.Row="5" Grid.Column="0" 
+                           Text="{lex:Loc Y}" 
+                           VerticalAlignment="Center" 
+                           Margin="0,10,10,10" />
+                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Y}"
+                                   Minimum="0"/>
+                
+                <TextBlock Grid.Row="6" Grid.Column="0" 
+                           Text="{lex:Loc Z}" 
+                           VerticalAlignment="Center" 
+                           Margin="0,10,10,10" />
+                <xctk:DoubleUpDown Grid.Row="3" Grid.Column="1" Value="{Binding Z}"
+                                   Minimum="0"/>
                 
                 <TextBlock Text="{lex:Loc DeliveryAddress}" 
                            VerticalAlignment="Center" 
-                           Grid.Row="4"
+                           Grid.Row="7" Grid.Column="0"
                            Margin="0,10,10,10" />
-                <TextBox Grid.Column="1" Grid.Row="4" 
+                <TextBox Grid.Column="1" Grid.Row="7" 
                          Width="200" 
                          VerticalAlignment="Center" 
                          Margin="0,10,0,10"
@@ -103,9 +115,9 @@
                 
                 <TextBlock Text="{lex:Loc Comment}" 
                            VerticalAlignment="Center" 
-                           Grid.Row="5" 
+                           Grid.Row="8" Grid.Column="0"
                            Margin="0,10,10,10" />
-                <TextBox Grid.Row="5" 
+                <TextBox Grid.Row="8" 
                          Grid.Column="1" 
                          Width="200" 
                          VerticalAlignment="Center" 
@@ -114,16 +126,14 @@
                          Visibility="{Binding IsShowComment, 
                          Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
-                <TextBlock Grid.Row="6" Grid.Column="0" Text="{lex:Loc CreationDate}" Margin="0,10,10,10" />
-            
-            
-                <DatePicker Grid.Row="6" 
+                <TextBlock Grid.Row="9" Grid.Column="0" Text="{lex:Loc CreationDate}" Margin="0,10,10,10" />
+                <DatePicker Grid.Row="9" 
                             Grid.Column="1" 
                             SelectedDate="{Binding CreationDate}" 
                             Visibility="{Binding IsShowCreationDate, 
                             Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
-                <StackPanel Grid.Row="7" Grid.Column="0" Margin="10">
+                <StackPanel Grid.Row="10" Grid.Column="0" Margin="10">
                         <TextBlock Text="{lex:Loc OrderStatus}" Margin="0,0,0,10" />
                         <ComboBox ItemsSource="{Binding OrderStatuses}" 
                                   SelectedItem="{Binding SelectedStatus}" 
@@ -131,7 +141,7 @@
                 </StackPanel>
                 
                 <Button Content="{lex:Loc OKButton}" 
-                        Grid.Row="8" 
+                        Grid.Row="11" 
                         Grid.Column="0"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
@@ -142,7 +152,7 @@
                         Converter={StaticResource BooleanToVisibilityConverter}}"/>
                 
                 <Button Content="{lex:Loc CancelButton}" 
-                        Grid.Row="8" 
+                        Grid.Row="11" 
                         Grid.Column="1" 
                         HorizontalAlignment="Right" 
                         VerticalAlignment="Center" 

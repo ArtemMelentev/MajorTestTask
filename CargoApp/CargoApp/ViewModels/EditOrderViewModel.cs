@@ -7,6 +7,9 @@ namespace CargoApp.ViewModels;
 public class EditOrderViewModel : InputViewModelBase
 {
     private double _weight = 0;
+    private double _x = 0;
+    private double _y = 0;
+    private double _z = 0;
     private string _clientName = String.Empty;
     private string _courierName = String.Empty;
     private string _cargoDetails = String.Empty;
@@ -24,7 +27,37 @@ public class EditOrderViewModel : InputViewModelBase
         set
         {
             _weight = value;
-            RaisePropertyChanged(nameof(ClientName));
+            RaisePropertyChanged(nameof(Weight));
+        }
+    }
+    
+    public double X
+    {
+        get => _x;
+        set
+        {
+            _x = value;
+            RaisePropertyChanged(nameof(X));
+        }
+    }
+    
+    public double Y
+    {
+        get => _y;
+        set
+        {
+            _y = value;
+            RaisePropertyChanged(nameof(Y));
+        }
+    }
+    
+    public double Z
+    {
+        get => _z;
+        set
+        {
+            _z = value;
+            RaisePropertyChanged(nameof(Z));
         }
     }
     

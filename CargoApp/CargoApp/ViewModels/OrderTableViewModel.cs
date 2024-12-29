@@ -228,6 +228,10 @@ public class OrderTableViewModel : ViewModelBase
             string title = Strings.InputOrderInfoVMName;
             var inputVM = new InputViewModel(title,
                 canOK: true, canCancel: true,
+                new InputField("Вес груза"),
+                new InputField("Глубина груза"),
+                new InputField("Ширина груза"),
+                new InputField("Высота груза"),
                 new InputField(Strings.ClientName),
                 new InputField(Strings.CourierName),
                 new InputField(Strings.PickupAddress),
@@ -239,14 +243,24 @@ public class OrderTableViewModel : ViewModelBase
                 await _messageService.ShowAsync(Strings.InputOrderCancelMessage);
                 return;
             }
-         
+
+          
+            Int32.TryParse(inputVM.Results[0], out int weight);
+            Int32.TryParse(inputVM.Results[1], out int x);
+            Int32.TryParse(inputVM.Results[2], out int y);
+            Int32.TryParse(inputVM.Results[3], out int z);
+            
             var order = new OrderModel
             {
-                ClientName = inputVM.Results[0],
-                CourierName = inputVM.Results[1],
-                PickupAddress = inputVM.Results[2],
-                DeliveryAddress = inputVM.Results[3],
-                Comment = inputVM.Results[4],
+                Weight = weight,
+                X = x,
+                Y = y,
+                Z = z,
+                ClientName = inputVM.Results[4],
+                CourierName = inputVM.Results[5],
+                PickupAddress = inputVM.Results[6],
+                DeliveryAddress = inputVM.Results[7],
+                Comment = inputVM.Results[8],
                 Status = OrderStatus.New
             };
 

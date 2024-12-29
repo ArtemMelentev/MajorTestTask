@@ -48,10 +48,6 @@ public class DBContext : DbContext
             {
                 continue;
             }
-            if (!order.IsCorrect())
-            {
-                continue;
-            }
             order.CreationDate = order.CreationDate.ToUniversalTime();
         }
 
