@@ -117,11 +117,12 @@ public class OrderTableViewModel : ViewModelBase
 
     private async Task SubmitInProcessAsync()
     {
-        if (!IsSelectedIndexCorrect())
+        bool isCorrect = await IsSelectedIndexCorrect();
+        if (!isCorrect)
         {
-            await _messageService.ShowAsync(Strings.OrderIndexError);
             return;
         }
+        
         var order = FilteredOrders[SelectedOrderIndex];
         if (order.Status != OrderStatus.New)
         {
@@ -160,11 +161,12 @@ public class OrderTableViewModel : ViewModelBase
 
     private async Task DeleteOrderAsync()
     {
-        if (!IsSelectedIndexCorrect())
+        bool isCorrect = await IsSelectedIndexCorrect();
+        if (!isCorrect)
         {
-            await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
             return;
         }
+        
         try
         {
             var order = FilteredOrders[SelectedOrderIndex];
@@ -181,9 +183,9 @@ public class OrderTableViewModel : ViewModelBase
 
     private async Task EditOrderAsync()
     {
-        if (!IsSelectedIndexCorrect())
+        bool isCorrect = await IsSelectedIndexCorrect();
+        if (!isCorrect)
         {
-            await _messageService.ShowAsync("Индекс вне диапазона массива заявок");
             return;
         }
 
@@ -248,9 +250,15 @@ public class OrderTableViewModel : ViewModelBase
             await _messageService.ShowAsync(Strings.CreateOrderError + ex.Message);
         }
     }
-
-    private bool IsSelectedIndexCorrect()
+    
+    private async Task<bool> IsSelectedIndexCorrect()
     {
-        return SelectedOrderIndex < FilteredOrders.Count && SelectedOrderIndex >= 0;
+        if (SelectedOrderIndex >= FilteredOrders.Count || SelectedOrderIndex < 0)
+        {
+            await _messageService.ShowAsync(Strings.OrderIndexError);
+            return false;
+        }
+
+        return true;
     }
 }
